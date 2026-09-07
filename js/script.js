@@ -1227,3 +1227,20 @@ document
 
         }
     );
+
+    /* =====================================================
+   CLOSE MEGA MENU WHEN PAGE SCROLLS
+===================================================== */
+
+window.addEventListener(
+    "scroll",
+    function () {
+
+        if (activeMegaMenu) {
+
+            closeMegaMenu();
+
+        }
+
+    }
+);
