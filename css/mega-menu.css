@@ -1,0 +1,574 @@
+/* =========================================================
+   JESPER PHARMA - PREMIUM MEGA MENU
+========================================================= */
+
+
+/* Fix header */
+
+.site-header {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+
+    z-index: 4000;
+
+    background: #ffffff;
+
+    border-bottom:
+        1px solid #e0e6e9;
+
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.035);
+}
+
+
+/* =========================================================
+   NAV BUTTON NORMALIZATION
+========================================================= */
+
+.mega-trigger {
+    border: none;
+    background: transparent;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+
+.main-nav .nav-link {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    height: 96px;
+
+    padding: 0;
+
+    color: #30363a;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition:
+        color .2s ease;
+}
+
+
+.main-nav .nav-link:hover,
+.main-nav .nav-link.active,
+.main-nav .mega-trigger.menu-active {
+
+    color: #0b8bd3;
+}
+
+
+.nav-arrow {
+
+    display: inline-block;
+
+    margin-top: -3px;
+
+    font-size: 16px;
+
+    transition:
+        transform .25s ease;
+}
+
+
+
+
+/* active underline */
+
+.main-nav .nav-link::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 24px;
+
+    width: 0;
+    height: 2px;
+
+    background: #0b8bd3;
+
+    transition:
+        width .25s ease;
+}
+
+
+.main-nav .nav-link:hover::after,
+.main-nav .nav-link.active::after,
+.main-nav .mega-trigger.menu-active::after {
+
+    width: 100%;
+}
+
+
+
+/* =========================================================
+   MEGA MENU WRAPPER
+========================================================= */
+
+.mega-menu {
+
+    position: absolute;
+
+    left: 0;
+    top: 96px;
+
+    width: 100%;
+
+    background: rgba(255,255,255,.98);
+
+    border-top:
+        1px solid #e5e9eb;
+
+    border-bottom:
+        1px solid #e2e8eb;
+
+    box-shadow:
+        0 22px 45px
+        rgba(18, 53, 72, 0.13);
+
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+
+    transform:
+        translateY(-14px);
+
+
+    transition:
+        opacity .28s ease,
+        transform .28s ease,
+        visibility .28s ease;
+}
+
+
+.mega-menu.open {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+        translateY(0);
+}
+
+
+
+/* =========================================================
+   INTERNAL GRID
+========================================================= */
+
+.mega-inner {
+
+    width: 95%;
+    max-width: 1540px;
+
+    min-height: 470px;
+
+    margin: 0 auto;
+
+    padding: 22px 0;
+
+    display: grid;
+
+    grid-template-columns:
+        0.95fr 0.95fr 1fr;
+
+    gap: 0;
+}
+
+
+
+/* =========================================================
+   LEFT PANEL
+========================================================= */
+
+.mega-intro {
+
+    min-height: 425px;
+
+    padding:
+        55px 45px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #0b8bd3 0%,
+            #075d8e 100%
+        );
+
+
+    color: white;
+
+
+    border-radius:
+        18px 0 0 18px;
+}
+
+
+.mega-small {
+
+    display: block;
+
+    margin-bottom: 18px;
+
+    color:
+        rgba(255,255,255,.78);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.1px;
+}
+
+
+.mega-intro h2 {
+
+    font-size: 35px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+}
+
+
+.mega-intro > p {
+
+    max-width: 430px;
+
+    margin-top: 20px;
+
+    color:
+        rgba(255,255,255,.88);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+.mega-intro-link {
+
+    display: inline-block;
+
+    width: max-content;
+
+    margin-top: 30px;
+
+    padding-bottom: 6px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.75);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+
+/* =========================================================
+   CENTER LINKS
+========================================================= */
+
+.mega-links {
+
+    min-height: 425px;
+
+    padding:
+        45px 48px;
+
+    background: white;
+}
+
+
+.mega-links h3 {
+
+    margin-bottom: 12px;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid #e4e8ea;
+
+    color: #20262a;
+
+    font-size: 24px;
+
+    font-weight: 700;
+}
+
+
+.mega-links a {
+
+    min-height: 53px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid #edf0f2;
+
+    color: #3f484e;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    transition:
+        padding-left .22s ease,
+        color .22s ease,
+        background .22s ease;
+}
+
+
+.mega-links a span {
+
+    color: #0b8bd3;
+
+    opacity: 0;
+
+    transform:
+        translateX(-8px);
+
+    transition: .22s ease;
+}
+
+
+.mega-links a:hover {
+
+    padding-left: 10px;
+
+    color: #0b8bd3;
+
+    background:
+        #f7fbfd;
+}
+
+
+.mega-links a:hover span {
+
+    opacity: 1;
+
+    transform:
+        translateX(0);
+}
+
+
+
+/* =========================================================
+   VIDEO AREA
+========================================================= */
+
+.mega-media {
+
+    min-height: 425px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #dfeaf0;
+
+    border-radius:
+        0 18px 18px 0;
+}
+
+
+.mega-media video {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 5s ease;
+}
+
+
+.mega-menu.open
+.mega-media video {
+
+    transform:
+        scale(1.035);
+}
+
+
+.mega-video-shade {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            180deg,
+
+            rgba(3,37,56,.03),
+
+            rgba(3,37,56,.48)
+        );
+}
+
+
+
+/* VIDEO TEXT */
+
+.mega-video-caption {
+
+    position: absolute;
+
+    left: 30px;
+    bottom: 28px;
+
+    color: white;
+}
+
+
+.mega-video-caption span {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+
+    color:
+        rgba(255,255,255,.78);
+}
+
+
+.mega-video-caption p {
+
+    font-size: 24px;
+
+    font-weight: 700;
+}
+
+
+
+/* =========================================================
+   BACKDROP
+========================================================= */
+
+.mega-backdrop {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 3500;
+
+    background:
+        rgba(5, 24, 35, .20);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .25s ease,
+        visibility .25s ease;
+}
+
+
+.mega-backdrop.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+
+/* =========================================================
+   TABLET / MOBILE
+
+   Mega menu desktop only.
+   Existing simple mobile navigation stays.
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .mega-menu {
+        display: none !important;
+    }
+
+
+    .main-nav .nav-link {
+        height: auto;
+    }
+
+
+    .mega-trigger {
+
+        width: 100%;
+
+        justify-content: space-between;
+
+        text-align: left;
+
+        padding: 15px 0 !important;
+
+        border-bottom:
+            1px solid #eeeeee;
+    }
+
+
+    .nav-arrow {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 14px;
+
+    transition: none;
+
+    transform: none !important;
+}
+
+}

@@ -1,0 +1,362 @@
+/* =====================================================
+   JESPER PHARMA - CONTACT SECTION
+===================================================== */
+
+.contact-section {
+    padding: 105px 0;
+
+    background: #073c59;
+
+    color: #ffffff;
+}
+
+
+.contact-container {
+    width: 92%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        0.85fr 1.15fr;
+
+    gap: 110px;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   LEFT CONTENT
+===================================================== */
+
+.contact-label {
+    margin-bottom: 18px;
+
+    color: #9edff8;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.contact-content h2 {
+    max-width: 560px;
+
+    font-size: 46px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+}
+
+
+.contact-description {
+    max-width: 540px;
+
+    margin-top: 22px;
+
+    color:
+        rgba(255,255,255,0.76);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   CONTACT DETAILS
+===================================================== */
+
+.contact-information {
+    margin-top: 45px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.22);
+}
+
+
+.contact-info-item {
+    padding: 19px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.22);
+}
+
+
+.contact-info-item span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #96cfe7;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.contact-info-item a,
+.contact-info-item p {
+    color: #ffffff;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+.contact-info-item a:hover {
+    color: #aee8ff;
+}
+
+
+/* =====================================================
+   FORM AREA
+===================================================== */
+
+.contact-form-area {
+    background: #ffffff;
+
+    padding: 42px;
+
+    color: #252525;
+}
+
+
+/* ROW */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+/* GROUP */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #34383b;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* INPUTS */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border: 1px solid #ced7dc;
+
+    background: #ffffff;
+
+    padding: 13px 14px;
+
+    color: #252525;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 125px;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #0b8bd3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(11,139,211,0.08);
+}
+
+
+/* PLACEHOLDER */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9a9fa3;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-message {
+    display: block;
+
+    min-height: 18px;
+
+    margin-top: 5px;
+
+    color: #c33737;
+
+    font-size: 12px;
+}
+
+
+.input-error {
+    border-color: #c33737 !important;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.submit-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 16px;
+
+    min-width: 165px;
+
+    padding: 14px 22px;
+
+    border: none;
+
+    background: #0b8bd3;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background .25s ease;
+}
+
+
+.submit-button:hover {
+    background: #075d8e;
+}
+
+
+/* =====================================================
+   SUCCESS MESSAGE
+===================================================== */
+
+.form-success {
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 14px 16px;
+
+    border-left:
+        4px solid #23844d;
+
+    background: #eaf7ef;
+
+    color: #28633f;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.form-success.show {
+    display: block;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .contact-container {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .contact-section {
+        padding: 75px 0;
+    }
+
+
+    .contact-content h2 {
+        font-size: 36px;
+    }
+
+
+    .contact-description {
+        font-size: 16px;
+    }
+
+
+    .contact-form-area {
+        padding: 28px 22px;
+    }
+
+
+    .form-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+
+    .submit-button {
+        width: 100%;
+    }
+
+}
