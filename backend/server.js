@@ -35,17 +35,16 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD || "",
     database: process.env.DB_NAME || "jesper_db",
 
-    ssl:
-    process.env.DB_SSL === "true"
-        ? {
-            ca: require("fs").readFileSync(
-                __dirname + "/ca.pem",
-                "utf8"
-            ),
-            rejectUnauthorized: true
-        }
-        : undefined,    
-        
+   ssl:
+  process.env.DB_SSL === "true"
+    ? {
+        ca: process.env.DB_CA_CERT
+          ? Buffer.from(process.env.DB_CA_CERT, "base64").toString("utf8")
+          : undefined,
+        rejectUnauthorized: true,
+      }
+    : undefined,
+
 
     waitForConnections: true,
     connectionLimit: 10,
