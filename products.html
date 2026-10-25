@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Products | Jesper Pharma</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="./assets/images/jesper-logo.png"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- SAME MAIN WEBSITE STYLES -->
+    <link
+        rel="stylesheet"
+        href="./css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/mega-menu.css"
+    >
+
+
+    <!-- PRODUCTS PAGE ONLY -->
+    <style>
+
+        /* =====================================================
+           PRODUCTS PAGE ACTIVE NAV
+        ===================================================== */
+
+        .main-nav .products-page-link {
+            color: #0b8bd3;
+        }
+
+        .main-nav .products-page-link::after {
+            width: 100%;
+        }
+
+
+        /* =====================================================
+           PRODUCTS HERO
+        ===================================================== */
+
+        .catalog-hero {
+            position: relative;
+
+            min-height: 590px;
+
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+
+            background: #073c59;
+        }
+
+
+        .catalog-hero-video {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 1;
+        }
+
+
+        .catalog-hero-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 2;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(4, 38, 58, 0.88) 0%,
+                    rgba(4, 55, 82, 0.70) 45%,
+                    rgba(5, 71, 103, 0.28) 100%
+                );
+        }
+
+
+        .catalog-hero-inner {
+            position: relative;
+
+            z-index: 3;
+
+            width: 92%;
+            max-width: 1400px;
+
+            margin: 0 auto;
+        }
+
+
+        .catalog-eyebrow {
+            margin-bottom: 17px;
+
+            color: #a9e3fa;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 1.3px;
+        }
+
+
+        .catalog-hero h1 {
+            max-width: 720px;
+
+            color: #ffffff;
+
+            font-size: 56px;
+            line-height: 1.1;
+
+            font-weight: 700;
+        }
+
+
+        .catalog-hero-description {
+            max-width: 670px;
+
+            margin-top: 22px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.88
+                );
+
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+
+        .catalog-hero-actions {
+            margin-top: 31px;
+
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 13px;
+        }
+
+
+        .catalog-primary {
+            padding: 14px 23px;
+
+            background: #0b8bd3;
+
+            border: 1px solid #0b8bd3;
+
+            color: #ffffff;
+
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+
+        .catalog-primary:hover {
+            background: #0878b8;
+        }
+
+
+        .catalog-secondary {
+            padding: 14px 23px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.8
+                );
+
+            color: #ffffff;
+
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+
+        .catalog-secondary:hover {
+            background: #ffffff;
+
+            color: #073c59;
+        }
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        .catalog-intro {
+            padding: 100px 0 70px;
+
+            background: #ffffff;
+        }
+
+
+        .catalog-container {
+            width: 92%;
+            max-width: 1400px;
+
+            margin: 0 auto;
+        }
+
+
+        .catalog-intro-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 0.78fr;
+
+            gap: 85px;
+
+            align-items: end;
+        }
+
+
+        .catalog-label {
+            margin-bottom: 14px;
+
+            color: #0b8bd3;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 1.1px;
+        }
+
+
+        .catalog-intro h2 {
+            max-width: 650px;
+
+            color: #20282d;
+
+            font-size: 45px;
+            line-height: 1.16;
+        }
+
+
+        .catalog-intro-text {
+            color: #626b71;
+
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+
+        /* =====================================================
+           PRODUCT AREA
+        ===================================================== */
+
+        .catalog-products {
+            padding: 80px 0 105px;
+
+            background: #f5f7f8;
+        }
+
+
+        .catalog-products-heading {
+            margin-bottom: 35px;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            gap: 45px;
+        }
+
+
+        .catalog-products-heading h2 {
+            max-width: 620px;
+
+            color: #22282c;
+
+            font-size: 42px;
+            line-height: 1.16;
+        }
+
+
+        .catalog-products-heading p {
+            max-width: 510px;
+
+            color: #68747a;
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           FILTERS
+        ===================================================== */
+
+        .product-filters {
+            margin-bottom: 37px;
+
+            padding-bottom: 25px;
+
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            border-bottom:
+                1px solid #d4dde1;
+        }
+
+
+        .filter-btn {
+            padding: 11px 19px;
+
+            border:
+                1px solid #c9d4d9;
+
+            background: #ffffff;
+
+            color: #414c52;
+
+            font-family: inherit;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+
+        .filter-btn:hover {
+            border-color: #0b8bd3;
+
+            color: #0b8bd3;
+        }
+
+
+        .filter-btn.active {
+            border-color: #0b8bd3;
+
+            background: #0b8bd3;
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           PRODUCT CARDS
+        ===================================================== */
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 27px;
+        }
+
+
+        .product-card {
+            position: relative;
+
+            min-height: 365px;
+
+            padding: 39px;
+
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            background: #ffffff;
+
+            border:
+                1px solid #d9e2e6;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .product-card:hover {
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 16px 38px
+                rgba(
+                    24,
+                    61,
+                    82,
+                    0.10
+                );
+        }
+
+
+        .product-card.hide {
+            display: none;
+        }
+
+
+        .product-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 240px;
+            height: 240px;
+
+            top: -95px;
+            right: -80px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(
+                    11,
+                    139,
+                    211,
+                    0.15
+                );
+        }
+
+
+        .product-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 145px;
+            height: 145px;
+
+            top: -37px;
+            right: -42px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    11,
+                    139,
+                    211,
+                    0.055
+                );
+        }
+
+
+        .product-number {
+            position: absolute;
+
+            top: 29px;
+            left: 34px;
+
+            color:
+                rgba(
+                    11,
+                    139,
+                    211,
+                    0.34
+                );
+
+            font-size: 43px;
+            font-weight: 700;
+        }
+
+
+        .product-category {
+            color: #0b8bd3;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1.1px;
+        }
+
+
+        .product-card h3 {
+            margin-top: 9px;
+
+            color: #252b2f;
+
+            font-size: 29px;
+        }
+
+
+        .product-card p {
+            max-width: 520px;
+
+            margin-top: 13px;
+
+            color: #68747a;
+
+            font-size: 16px;
+            line-height: 1.68;
+        }
+
+
+        .product-enquiry {
+            width: max-content;
+
+            margin-top: 22px;
+
+            padding-bottom: 5px;
+
+            border-bottom:
+                1px solid #0b8bd3;
+
+            color: #0b8bd3;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .product-enquiry:hover {
+            color: #075d8e;
+
+            border-color: #075d8e;
+        }
+
+
+        .no-products {
+            display: none;
+
+            padding: 50px 20px;
+
+            color: #657178;
+
+            text-align: center;
+        }
+
+
+        .no-products.show {
+            display: block;
+        }
+
+
+        /* =====================================================
+           INFORMATION BAR
+        ===================================================== */
+
+        .catalog-info {
+            margin-top: 38px;
+
+            padding: 24px 27px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+
+            background: #ffffff;
+
+            border-left:
+                4px solid #0b8bd3;
+        }
+
+
+        .catalog-info p {
+            max-width: 900px;
+
+            color: #616d73;
+
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+
+        .catalog-info a {
+            flex-shrink: 0;
+
+            color: #0b8bd3;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .catalog-cta {
+            padding: 95px 0;
+
+            background: #073c59;
+
+            color: #ffffff;
+        }
+
+
+        .catalog-cta-inner {
+            width: 92%;
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 60px;
+        }
+
+
+        .catalog-cta h2 {
+            max-width: 700px;
+
+            font-size: 40px;
+            line-height: 1.18;
+        }
+
+
+        .catalog-cta p {
+            max-width: 680px;
+
+            margin-top: 15px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.76
+                );
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+
+        .catalog-cta-button {
+            flex-shrink: 0;
+
+            padding: 15px 25px;
+
+            background: #ffffff;
+
+            color: #073c59;
+
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .catalog-intro-grid {
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+            }
+
+
+            .catalog-products-heading {
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .catalog-cta-inner {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .catalog-hero {
+                min-height: 520px;
+            }
+
+
+            .catalog-hero h1 {
+                font-size: 39px;
+            }
+
+
+            .catalog-hero-description {
+                font-size: 16px;
+            }
+
+
+            .catalog-intro {
+                padding:
+                    75px 0 50px;
+            }
+
+
+            .catalog-intro h2,
+            .catalog-products-heading h2 {
+                font-size: 34px;
+            }
+
+
+            .catalog-products {
+                padding:
+                    60px 0 80px;
+            }
+
+
+            .product-card {
+                min-height: 330px;
+
+                padding: 31px 25px;
+            }
+
+
+            .catalog-info {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .catalog-cta h2 {
+                font-size: 33px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SAME JESPER HEADER
+===================================================== -->
+
+<header
+    class="site-header"
+    id="siteHeader"
+>
+
+    <div class="header-wrap">
+
+        <a
+            href="./index.html#home"
+            class="logo"
+        >
+            <img
+                src="./assets/images/jesper-logo.png"
+                alt="Jesper Pharma"
+            >
+        </a>
+
+
+        <nav
+            class="main-nav"
+            id="mainNav"
+        >
+
+            <a
+                href="./index.html#home"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+
+            <button
+                class="nav-link mega-trigger"
+                data-menu="aboutMega"
+            >
+                About Us
+
+                <span class="nav-arrow">
+                    ▾
+                </span>
+            </button>
+
+
+            <button
+                class="nav-link mega-trigger"
+                data-menu="businessMega"
+            >
+                Our Business
+
+                <span class="nav-arrow">
+                    ▾
+                </span>
+            </button>
+
+
+            <button
+                class="nav-link mega-trigger products-page-link"
+                data-menu="productsMega"
+            >
+                Products
+
+                <span class="nav-arrow">
+                    ▾
+                </span>
+            </button>
+
+
+            <a
+                href="./index.html#contact"
+                class="nav-link"
+            >
+                Contact Us
+            </a>
+
+        </nav>
+
+
+        <div class="header-right">
+
+            <div class="phone">
+
+                <span>
+                    Call us
+                </span>
+
+                <a href="tel:+917032102726">
+                    +91 7032102726
+                </a>
+
+            </div>
+
+
+            <a
+                href="./index.html#contact"
+                class="enquire-btn"
+            >
+                Enquire Now
+            </a>
+
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open navigation"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ABOUT MEGA MENU -->
+
+    <div
+        class="mega-menu"
+        id="aboutMega"
+    >
+
+        <div class="mega-inner">
+
+            <div class="mega-intro">
+
+                <span class="mega-small">
+                    ABOUT JESPER
+                </span>
+
+                <h2>
+                    About Us
+                </h2>
+
+                <p>
+                    Jesper Pharma supports healthcare
+                    through dependable pharmaceutical
+                    distribution and professional
+                    business partnerships.
+                </p>
+
+                <a
+                    href="./index.html#about"
+                    class="mega-intro-link"
+                >
+                    Discover Jesper →
+                </a>
+
+            </div>
+
+
+            <div class="mega-links">
+
+                <h3>
+                    Company
+                </h3>
+
+                <a href="./index.html#about">
+                    Who We Are
+                    <span>→</span>
+                </a>
+
+                <a href="./index.html#our-story">
+                    Our Story
+                    <span>→</span>
+                </a>
+
+                <a href="./index.html#mission-vision">
+                    Mission & Vision
+                    <span>→</span>
+                </a>
+
+                <a href="./index.html#snapshot">
+                    Jesper at a Glance
+                    <span>→</span>
+                </a>
+
+                <a href="./index.html#why-jesper">
+                    Why Jesper
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+            <div class="mega-media">
+
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                >
+
+                    <source
+                        src="./assets/videos/D1.mp4"
+                        type="video/mp4"
+                    >
+
+                </video>
+
+                <div class="mega-video-shade"></div>
+
+                <div class="mega-video-caption">
+
+                    <span>
+                        JESPER PHARMA
+                    </span>
+
+                    <p>
+                        Serves Health
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUSINESS MEGA MENU -->
+
+    <div
+        class="mega-menu"
+        id="businessMega"
+    >
+
+        <div class="mega-inner">
+
+            <div class="mega-intro">
+
+                <span class="mega-small">
+                    OUR BUSINESS
+                </span>
+
+                <h2>
+                    Distribution
+                </h2>
+
+                <p>
+                    Supporting pharmaceutical availability
+                    through organised supply, responsive
+                    coordination and professional service.
+                </p>
+
+                <a
+                    href="./index.html#business"
+                    class="mega-intro-link"
+                >
+                    Explore our business →
+                </a>
+
+            </div>
+
+
+            <div class="mega-links">
+
+                <h3>
+                    Services
+                </h3>
+
+                <a href="./index.html#pharma-distribution">
+                    Pharmaceutical Distribution
+                    <span>→</span>
+                </a>
+
+                <a href="./index.html#supply-coordination">
+                    Supply Coordination
+                    <span>→</span>
+                </a>
+
+                <a href="./index.html#partner-support">
+                    Partner Support
+                    <span>→</span>
+                </a>
+
+                <a href="./index.html#distribution-network">
+                    Distribution Network
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+            <div class="mega-media">
+
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                >
+
+                    <source
+                        src="./assets/videos/D3.mp4"
+                        type="video/mp4"
+                    >
+
+                </video>
+
+                <div class="mega-video-shade"></div>
+
+                <div class="mega-video-caption">
+
+                    <span>
+                        DISTRIBUTION
+                    </span>
+
+                    <p>
+                        Reliable Supply
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCTS MEGA MENU -->
+
+    <div
+        class="mega-menu"
+        id="productsMega"
+    >
+
+        <div class="mega-inner">
+
+            <div class="mega-intro">
+
+                <span class="mega-small">
+                    PRODUCT PORTFOLIO
+                </span>
+
+                <h2>
+                    Products
+                </h2>
+
+                <p>
+                    Explore pharmaceutical product
+                    categories supported through
+                    Jesper Pharma's distribution network.
+                </p>
+
+                <a
+                    href="#products"
+                    class="mega-intro-link"
+                >
+                    View products →
+                </a>
+
+            </div>
+
+
+            <div class="mega-links">
+
+                <h3>
+                    Product Range
+                </h3>
+
+                <a
+                    href="#products"
+                    onclick="selectProductCategory('tablets'); return false;"
+                >
+                    Tablets
+                    <span>→</span>
+                </a>
+
+                <a
+                    href="#products"
+                    onclick="selectProductCategory('capsules'); return false;"
+                >
+                    Capsules
+                    <span>→</span>
+                </a>
+
+                <a
+                    href="#products"
+                    onclick="selectProductCategory('liquids'); return false;"
+                >
+                    Oral Liquids
+                    <span>→</span>
+                </a>
+
+                <a
+                    href="#products"
+                    onclick="selectProductCategory('healthcare'); return false;"
+                >
+                    Healthcare Range
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+            <div class="mega-media">
+
+                <video
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                >
+
+                    <source
+                        src="./assets/videos/D2.mp4"
+                        type="video/mp4"
+                    >
+
+                </video>
+
+                <div class="mega-video-shade"></div>
+
+                <div class="mega-video-caption">
+
+                    <span>
+                        PRODUCTS
+                    </span>
+
+                    <p>
+                        Healthcare Portfolio
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     PRODUCTS HERO
+===================================================== -->
+
+<section
+    class="catalog-hero"
+    id="catalogHome"
+>
+
+    <video
+        class="catalog-hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+    >
+
+        <source
+            src="./assets/videos/D2.mp4"
+            type="video/mp4"
+        >
+
+    </video>
+
+
+    <div class="catalog-hero-overlay"></div>
+
+
+    <div class="catalog-hero-inner">
+
+        <p class="catalog-eyebrow">
+            JESPER PHARMA · PRODUCT PORTFOLIO
+        </p>
+
+        <h1>
+            Pharmaceutical products,
+            supported by dependable distribution.
+        </h1>
+
+        <p class="catalog-hero-description">
+            Explore key pharmaceutical and healthcare
+            product categories supported through
+            Jesper Pharma's business and distribution
+            network.
+        </p>
+
+
+        <div class="catalog-hero-actions">
+
+            <a
+                href="#products"
+                class="catalog-primary"
+            >
+                Explore Products
+            </a>
+
+            <a
+                href="./index.html#contact"
+                class="catalog-secondary"
+            >
+                Send an Enquiry
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="catalog-intro">
+
+    <div class="catalog-container catalog-intro-grid">
+
+        <div>
+
+            <p class="catalog-label">
+                OUR PORTFOLIO
+            </p>
+
+            <h2>
+                Supporting pharmaceutical
+                availability across key categories.
+            </h2>
+
+        </div>
+
+
+        <p class="catalog-intro-text">
+            Jesper Pharma supports healthcare
+            requirements through organised
+            pharmaceutical distribution,
+            responsive coordination and
+            professional business service.
+            Product availability may vary based
+            on distribution requirements.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+
+<section
+    class="catalog-products"
+    id="products"
+>
+
+    <div class="catalog-container">
+
+        <div class="catalog-products-heading">
+
+            <div>
+
+                <p class="catalog-label">
+                    PRODUCT CATEGORIES
+                </p>
+
+                <h2>
+                    Explore our healthcare
+                    product portfolio.
+                </h2>
+
+            </div>
+
+
+            <p>
+                Select a category to explore
+                Jesper Pharma's supported product
+                range or send an enquiry for
+                current availability.
+            </p>
+
+        </div>
+
+
+        <div class="product-filters">
+
+            <button
+                class="filter-btn active"
+                data-filter="all"
+            >
+                All Products
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="tablets"
+            >
+                Tablets
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="capsules"
+            >
+                Capsules
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="liquids"
+            >
+                Oral Liquids
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="healthcare"
+            >
+                Healthcare
+            </button>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <article
+                class="product-card"
+                data-category="tablets"
+            >
+
+                <span class="product-number">
+                    01
+                </span>
+
+                <span class="product-category">
+                    TABLETS
+                </span>
+
+                <h3>
+                    Tablet Range
+                </h3>
+
+                <p>
+                    Tablet-based pharmaceutical
+                    products supported through
+                    Jesper Pharma's professional
+                    distribution network.
+                </p>
+
+                <a
+                    href="./index.html#contact"
+                    class="product-enquiry"
+                >
+                    Send Product Enquiry →
+                </a>
+
+            </article>
+
+
+            <article
+                class="product-card"
+                data-category="capsules"
+            >
+
+                <span class="product-number">
+                    02
+                </span>
+
+                <span class="product-category">
+                    CAPSULES
+                </span>
+
+                <h3>
+                    Capsule Range
+                </h3>
+
+                <p>
+                    Capsule-based pharmaceutical
+                    categories supported for
+                    healthcare and business
+                    distribution requirements.
+                </p>
+
+                <a
+                    href="./index.html#contact"
+                    class="product-enquiry"
+                >
+                    Send Product Enquiry →
+                </a>
+
+            </article>
+
+
+            <article
+                class="product-card"
+                data-category="liquids"
+            >
+
+                <span class="product-number">
+                    03
+                </span>
+
+                <span class="product-category">
+                    ORAL LIQUIDS
+                </span>
+
+                <h3>
+                    Oral Liquid Range
+                </h3>
+
+                <p>
+                    Oral liquid pharmaceutical
+                    categories supported through
+                    coordinated and dependable
+                    distribution services.
+                </p>
+
+                <a
+                    href="./index.html#contact"
+                    class="product-enquiry"
+                >
+                    Send Product Enquiry →
+                </a>
+
+            </article>
+
+
+            <article
+                class="product-card"
+                data-category="healthcare"
+            >
+
+                <span class="product-number">
+                    04
+                </span>
+
+                <span class="product-category">
+                    HEALTHCARE
+                </span>
+
+                <h3>
+                    Healthcare Range
+                </h3>
+
+                <p>
+                    Additional healthcare categories
+                    supported according to product
+                    availability and business
+                    requirements.
+                </p>
+
+                <a
+                    href="./index.html#contact"
+                    class="product-enquiry"
+                >
+                    Send Product Enquiry →
+                </a>
+
+            </article>
+
+        </div>
+
+
+        <div
+            class="no-products"
+            id="noProducts"
+        >
+            No products found in this category.
+        </div>
+
+
+        <div class="catalog-info">
+
+            <p>
+                Looking for a specific formulation,
+                pack size or current product?
+                Contact Jesper Pharma with your
+                requirement and the team can provide
+                relevant availability information.
+            </p>
+
+            <a href="./index.html#contact">
+                Contact Jesper →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="catalog-cta">
+
+    <div class="catalog-cta-inner">
+
+        <div>
+
+            <h2>
+                Need support with a product
+                or distribution requirement?
+            </h2>
+
+            <p>
+                Send your requirement to Jesper Pharma
+                for product information, distribution
+                enquiries or business coordination.
+            </p>
+
+        </div>
+
+
+        <a
+            href="./index.html#contact"
+            class="catalog-cta-button"
+        >
+            Send an Enquiry
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SAME JESPER FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <img
+            src="./assets/images/jesper-logo.png"
+            alt="Jesper Pharma"
+        >
+
+
+        <div class="footer-links">
+
+            <a href="./index.html#home">
+                Home
+            </a>
+
+            <a href="./index.html#about">
+                About
+            </a>
+
+            <a href="./index.html#business">
+                Our Business
+            </a>
+
+            <a href="./products.html">
+                Products
+            </a>
+
+            <a href="./index.html#contact">
+                Contact
+            </a>
+
+        </div>
+
+
+        <p>
+            © 2026 Jesper Pharma Pvt. Ltd.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- BACKDROP MUST COME BEFORE SCRIPT -->
+
+<div
+    class="mega-backdrop"
+    id="megaBackdrop"
+></div>
+
+
+<script src="./js/script.js"></script>
+
+
+<!--
+    MOBILE FIX:
+    About / Business buttons on this page
+    should return to homepage sections.
+-->
+
+<script>
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            if (
+                window.innerWidth > 850
+            ) {
+                return;
+            }
+
+
+            const aboutButton =
+                document.querySelector(
+                    '[data-menu="aboutMega"]'
+                );
+
+
+            const businessButton =
+                document.querySelector(
+                    '[data-menu="businessMega"]'
+                );
+
+
+            if (aboutButton) {
+
+                aboutButton.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.stopImmediatePropagation();
+
+                        window.location.href =
+                            "./index.html#about";
+
+                    },
+                    true
+                );
+
+            }
+
+
+            if (businessButton) {
+
+                businessButton.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.stopImmediatePropagation();
+
+                        window.location.href =
+                            "./index.html#business";
+
+                    },
+                    true
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

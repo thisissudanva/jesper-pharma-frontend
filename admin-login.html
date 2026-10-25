@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Jesper Pharma | Admin Login</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="./assets/images/jesper-logo.png"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+
+            font-family:
+                "Lato",
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef8fd 0%,
+                    #ffffff 50%,
+                    #e4f4fb 100%
+                );
+
+            color: #252525;
+        }
+
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 1000px;
+
+            min-height: 590px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            overflow: hidden;
+
+            background: #ffffff;
+
+            border:
+                1px solid #dde7ec;
+
+            box-shadow:
+                0 24px 70px
+                rgba(16, 71, 103, 0.14);
+        }
+
+
+        .brand-side {
+            padding: 65px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #073c59,
+                    #075d8e
+                );
+
+            color: #ffffff;
+        }
+
+
+        .brand-side img {
+            width: 165px;
+
+            margin-bottom: 55px;
+
+            background: #ffffff;
+
+            padding: 10px 14px;
+        }
+
+
+        .brand-label {
+            margin-bottom: 15px;
+
+            color: #8fd7f5;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 1.4px;
+        }
+
+
+        .brand-side h1 {
+            max-width: 430px;
+
+            font-size: 42px;
+
+            line-height: 1.14;
+        }
+
+
+        .brand-side p {
+            max-width: 430px;
+
+            margin-top: 22px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.78
+                );
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+
+        .login-side {
+            padding: 70px 60px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .login-side h2 {
+            color: #173747;
+
+            font-size: 32px;
+        }
+
+
+        .login-description {
+            margin-top: 10px;
+            margin-bottom: 35px;
+
+            color: #717c82;
+
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+
+        .form-group {
+            margin-bottom: 21px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #34454e;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border:
+                1px solid #cad7dd;
+
+            outline: none;
+
+            color: #222;
+
+            font-family: inherit;
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+
+        .form-group input:focus {
+            border-color: #0b8bd3;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    11,
+                    139,
+                    211,
+                    0.08
+                );
+        }
+
+
+        .login-button {
+            width: 100%;
+
+            margin-top: 6px;
+
+            padding: 15px;
+
+            border: 0;
+
+            background: #0b8bd3;
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .login-button:hover {
+            background: #075d8e;
+        }
+
+
+        .login-button:disabled {
+            opacity: 0.65;
+
+            cursor: not-allowed;
+        }
+
+
+        .message {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 13px 15px;
+
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        .message.error {
+            display: block;
+
+            border-left:
+                4px solid #c33737;
+
+            background: #fdecec;
+
+            color: #992d2d;
+        }
+
+
+        .back-link {
+            display: inline-block;
+
+            margin-top: 28px;
+
+            color: #0b8bd3;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        @media (
+            max-width: 800px
+        ) {
+
+            body {
+                padding: 0;
+            }
+
+
+            .login-wrapper {
+                min-height: 100vh;
+
+                grid-template-columns:
+                    1fr;
+
+                box-shadow: none;
+            }
+
+
+            .brand-side {
+                padding:
+                    45px 30px;
+            }
+
+
+            .brand-side img {
+                margin-bottom: 30px;
+            }
+
+
+            .brand-side h1 {
+                font-size: 34px;
+            }
+
+
+            .login-side {
+                padding:
+                    50px 30px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="login-wrapper">
+
+        <section class="brand-side">
+
+            <img
+                src="./assets/images/jesper-logo.png"
+                alt="Jesper Pharma"
+            >
+
+            <p class="brand-label">
+                JESPER PHARMA
+            </p>
+
+            <h1>
+                Enquiry Management
+                Administration
+            </h1>
+
+            <p>
+                Secure access for authorised
+                Jesper Pharma staff to view and
+                manage website enquiries.
+            </p>
+
+        </section>
+
+
+        <section class="login-side">
+
+            <h2>
+                Admin Login
+            </h2>
+
+            <p class="login-description">
+                Enter your authorised administrator
+                credentials to continue.
+            </p>
+
+
+            <form id="adminLoginForm">
+
+                <div class="form-group">
+
+                    <label for="adminEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        autocomplete="username"
+                        placeholder="Enter admin email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        autocomplete="current-password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+                    Login to Dashboard
+                </button>
+
+
+                <div
+                    class="message"
+                    id="loginMessage"
+                ></div>
+
+            </form>
+
+
+            <a
+                href="./index.html"
+                class="back-link"
+            >
+                ← Back to Jesper Pharma
+            </a>
+
+        </section>
+
+    </div>
+
+
+    <script>
+
+        const API_BASE_URL =
+            "http://localhost:3000";
+
+
+        const loginForm =
+            document.getElementById(
+                "adminLoginForm"
+            );
+
+        const adminEmail =
+            document.getElementById(
+                "adminEmail"
+            );
+
+        const adminPassword =
+            document.getElementById(
+                "adminPassword"
+            );
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+        const loginMessage =
+            document.getElementById(
+                "loginMessage"
+            );
+
+
+        /*
+            Already logged-in admin
+        */
+
+        const existingToken =
+            sessionStorage.getItem(
+                "jesperAdminToken"
+            );
+
+
+        if (existingToken) {
+
+            window.location.href =
+                "./admin.html";
+
+        }
+
+
+        function showError(message) {
+
+            loginMessage.textContent =
+                message;
+
+            loginMessage.className =
+                "message error";
+
+        }
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                loginMessage.className =
+                    "message";
+
+                loginMessage.textContent =
+                    "";
+
+
+                const email =
+                    adminEmail.value
+                        .trim();
+
+                const password =
+                    adminPassword.value;
+
+
+                if (
+                    !email ||
+                    !password
+                ) {
+
+                    showError(
+                        "Please enter email and password."
+                    );
+
+                    return;
+
+                }
+
+
+                loginButton.disabled =
+                    true;
+
+                loginButton.textContent =
+                    "Signing in...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            API_BASE_URL +
+                            "/api/admin/login",
+                            {
+                                method:
+                                    "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+                                        email:
+                                            email,
+
+                                        password:
+                                            password
+                                    })
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result.message ||
+                            "Login failed."
+                        );
+
+                    }
+
+
+                    sessionStorage.setItem(
+                        "jesperAdminToken",
+                        result.token
+                    );
+
+
+                    window.location.href =
+                        "./admin.html";
+
+                }
+                catch (error) {
+
+                    showError(
+                        error.message ||
+                        "Unable to login."
+                    );
+
+                }
+                finally {
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.textContent =
+                        "Login to Dashboard";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

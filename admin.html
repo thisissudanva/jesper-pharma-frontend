@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Jesper Pharma | Admin Dashboard</title>
+    <link
+        rel="icon"
+        type="image/png"
+        href="./assets/images/jesper-logo.png"
+    >
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8fb;
+            color: #123047;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .admin-header {
+            background: #ffffff;
+            border-bottom: 1px solid #dce7ee;
+
+            padding: 15px 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo-text {
+            font-size: 38px;
+            font-weight: 800;
+            font-style: italic;
+            color: #078bc9;
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 44px;
+            background: #dce7ee;
+        }
+
+        .header-title small {
+            display: block;
+
+            color: #71818d;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .header-title h1 {
+            font-size: 21px;
+            color: #082f49;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .view-site-btn,
+        .logout-btn {
+            height: 46px;
+            padding: 0 22px;
+
+            border-radius: 7px;
+            font-weight: 700;
+
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .view-site-btn {
+            background: #ffffff;
+            color: #082f49;
+            border: 1px solid #d5e1e8;
+        }
+
+        .view-site-btn:hover {
+            background: #f3f8fb;
+        }
+
+        .logout-btn {
+            background: #078bc9;
+            color: #ffffff;
+            border: 1px solid #078bc9;
+        }
+
+        .logout-btn:hover {
+            background: #0675aa;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: calc(100% - 80px);
+            max-width: 1500px;
+
+            margin: 30px auto 50px;
+        }
+
+        .page-heading {
+            margin-bottom: 22px;
+        }
+
+        .page-heading h2 {
+            font-size: 28px;
+            color: #082f49;
+            margin-bottom: 6px;
+        }
+
+        .page-heading p {
+            color: #748490;
+            font-size: 14px;
+        }
+
+
+        /* ================= STATS ================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(150px, 1fr));
+
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+
+            border: 1px solid #e0e9ef;
+            border-radius: 10px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 47, 73, 0.04);
+        }
+
+        .stat-label {
+            color: #758792;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #082f49;
+        }
+
+        .new-card .stat-number {
+            color: #078bc9;
+        }
+
+        .contacted-card .stat-number {
+            color: #e29422;
+        }
+
+        .closed-card .stat-number {
+            color: #23935c;
+        }
+
+
+        /* ================= TOOLBAR ================= */
+
+        .toolbar {
+            background: #ffffff;
+
+            border: 1px solid #e0e9ef;
+            border-radius: 10px;
+
+            padding: 16px;
+            margin-bottom: 18px;
+
+            display: flex;
+            gap: 14px;
+        }
+
+        .search-box {
+            flex: 1;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 44px;
+
+            padding: 0 14px;
+
+            border: 1px solid #d5e1e8;
+            border-radius: 7px;
+
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #078bc9;
+
+            box-shadow:
+                0 0 0 3px rgba(7, 139, 201, 0.09);
+        }
+
+        .filter-box select {
+            height: 44px;
+            min-width: 180px;
+
+            padding: 0 12px;
+
+            border: 1px solid #d5e1e8;
+            border-radius: 7px;
+
+            background: #ffffff;
+        }
+
+
+        /* ================= MESSAGE ================= */
+
+        .message-box {
+            display: none;
+
+            padding: 13px 16px;
+            margin-bottom: 15px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .message-box.success {
+            display: block;
+
+            background: #eaf8f0;
+            border: 1px solid #a9dec0;
+
+            color: #197647;
+        }
+
+        .message-box.error {
+            display: block;
+
+            background: #fff0f0;
+            border: 1px solid #efb5b5;
+
+            color: #b52d39;
+        }
+
+
+        /* ================= TABLE ================= */
+
+        .table-wrapper {
+            background: #ffffff;
+
+            border: 1px solid #dfe8ee;
+            border-radius: 10px;
+
+            overflow-x: auto;
+
+            box-shadow:
+                0 5px 18px rgba(0, 47, 73, 0.04);
+        }
+
+        table {
+            width: 100%;
+            min-width: 1250px;
+
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f7fafc;
+        }
+
+        th {
+            text-align: left;
+
+            padding: 15px 14px;
+
+            font-size: 12px;
+            letter-spacing: 0.5px;
+
+            text-transform: uppercase;
+
+            color: #6d7f8a;
+
+            border-bottom: 1px solid #dfe8ee;
+        }
+
+        td {
+            padding: 18px 14px;
+
+            vertical-align: middle;
+
+            border-bottom: 1px solid #e8eef2;
+
+            font-size: 14px;
+        }
+
+        tbody tr:hover {
+            background: #fbfdfe;
+        }
+
+        .customer-name {
+            font-weight: 700;
+            color: #112f44;
+            margin-bottom: 5px;
+        }
+
+        .enquiry-id {
+            color: #8a9aa5;
+            font-size: 12px;
+        }
+
+        .contact-info a {
+            display: block;
+
+            color: #078bc9;
+
+            text-decoration: none;
+            margin-bottom: 6px;
+        }
+
+        .type-badge {
+            display: inline-block;
+
+            padding: 6px 9px;
+
+            background: #eaf6fc;
+            color: #0477ae;
+
+            border-radius: 5px;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .enquiry-message {
+            max-width: 230px;
+
+            line-height: 1.45;
+            color: #425866;
+
+            word-break: break-word;
+        }
+
+        .status-select {
+            height: 38px;
+            min-width: 130px;
+
+            padding: 0 10px;
+
+            border: 1px solid #cedbe3;
+            border-radius: 6px;
+
+            background: #ffffff;
+
+            color: #163549;
+
+            outline: none;
+        }
+
+
+        /* ================= BUTTONS ================= */
+
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            white-space: nowrap;
+        }
+
+        .contact-button,
+        .delete-button {
+            height: 38px;
+
+            padding: 0 15px;
+
+            border-radius: 7px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .contact-button {
+            background: #078bc9;
+            color: #ffffff;
+
+            border: 1px solid #078bc9;
+        }
+
+        .contact-button:hover {
+            background: #066fa0;
+            border-color: #066fa0;
+        }
+
+        .delete-button {
+            background: #ffffff;
+            color: #dc3545;
+
+            border: 1px solid #eca9af;
+        }
+
+        .delete-button:hover {
+            background: #fff4f5;
+            border-color: #dc3545;
+        }
+
+        .contact-button:disabled,
+        .delete-button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .empty-state {
+            text-align: center;
+
+            padding: 50px;
+
+            color: #81919c;
+        }
+
+
+        /* ==========================================
+           JESPER CUSTOM MODAL
+        ========================================== */
+
+        .modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(5, 32, 49, 0.58);
+
+            backdrop-filter: blur(4px);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 9999;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .jesper-modal {
+            width: 100%;
+            max-width: 440px;
+
+            background: #ffffff;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(0, 31, 50, 0.28);
+
+            animation:
+                modalOpen 0.22s ease;
+        }
+
+        @keyframes modalOpen {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(15px)
+                    scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        .modal-top {
+            height: 6px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0079b9,
+                    #16a7e0
+                );
+        }
+
+
+        .modal-content {
+            padding: 30px 30px 26px;
+        }
+
+
+        .modal-icon {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            background: #e9f7fd;
+            color: #078bc9;
+
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+
+        .modal-icon.danger {
+            background: #fff0f1;
+            color: #d83a46;
+        }
+
+
+        .modal-title {
+            font-size: 22px;
+
+            color: #082f49;
+
+            margin-bottom: 10px;
+        }
+
+
+        .modal-message {
+            color: #647985;
+
+            font-size: 14px;
+            line-height: 1.65;
+
+            margin-bottom: 26px;
+        }
+
+
+        .modal-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+        }
+
+
+        .modal-cancel,
+        .modal-confirm {
+            height: 42px;
+
+            padding: 0 20px;
+
+            border-radius: 7px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .modal-cancel {
+            background: #ffffff;
+
+            border: 1px solid #d2dee5;
+
+            color: #536a77;
+        }
+
+
+        .modal-cancel:hover {
+            background: #f5f8fa;
+        }
+
+
+        .modal-confirm {
+            background: #078bc9;
+
+            border: 1px solid #078bc9;
+
+            color: #ffffff;
+        }
+
+
+        .modal-confirm:hover {
+            background: #066fa0;
+        }
+
+
+        .modal-confirm.danger {
+            background: #dc3545;
+
+            border-color: #dc3545;
+        }
+
+
+        .modal-confirm.danger:hover {
+            background: #bd2936;
+        }
+
+
+        .modal-confirm:disabled,
+        .modal-cancel:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .admin-header {
+                padding: 14px 18px;
+            }
+
+            .header-title,
+            .header-divider {
+                display: none;
+            }
+
+            .container {
+                width: calc(100% - 30px);
+            }
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .toolbar {
+                flex-direction: column;
+            }
+
+            .filter-box select {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="admin-header">
+
+    <div class="header-left">
+
+        <div class="logo-text">
+            Jesper
+        </div>
+
+        <div class="header-divider"></div>
+
+        <div class="header-title">
+
+            <small>
+                ADMINISTRATION
+            </small>
+
+            <h1>
+                Enquiry Management
+            </h1>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button
+            class="view-site-btn"
+            id="viewWebsiteBtn"
+        >
+            View Website
+        </button>
+
+        <button
+            class="logout-btn"
+            id="logoutBtn"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <div class="page-heading">
+
+        <h2>
+            Enquiries
+        </h2>
+
+        <p>
+            Manage customer enquiries and communication.
+        </p>
+
+    </div>
+
+
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Total Enquiries
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card new-card">
+
+            <div class="stat-label">
+                New
+            </div>
+
+            <div
+                class="stat-number"
+                id="newCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card contacted-card">
+
+            <div class="stat-label">
+                Contacted
+            </div>
+
+            <div
+                class="stat-number"
+                id="contactedCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card closed-card">
+
+            <div class="stat-label">
+                Closed
+            </div>
+
+            <div
+                class="stat-number"
+                id="closedCount"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="toolbar">
+
+        <div class="search-box">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search name, email, phone, company..."
+            >
+
+        </div>
+
+        <div class="filter-box">
+
+            <select id="statusFilter">
+
+                <option value="All">
+                    All Status
+                </option>
+
+                <option value="New">
+                    New
+                </option>
+
+                <option value="Contacted">
+                    Contacted
+                </option>
+
+                <option value="Closed">
+                    Closed
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <div
+        id="messageBox"
+        class="message-box"
+    ></div>
+
+
+
+    <section class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>Customer</th>
+                <th>Contact</th>
+                <th>Company</th>
+                <th>Type</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+
+            </thead>
+
+
+            <tbody id="enquiryTableBody">
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="empty-state"
+                >
+                    Loading enquiries...
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================
+     JESPER CUSTOM CONFIRMATION POPUP
+====================================== -->
+
+<div
+    class="modal-overlay"
+    id="confirmModal"
+>
+
+    <div class="jesper-modal">
+
+        <div class="modal-top"></div>
+
+        <div class="modal-content">
+
+            <div
+                class="modal-icon"
+                id="modalIcon"
+            >
+                ✉
+            </div>
+
+            <h3
+                class="modal-title"
+                id="modalTitle"
+            >
+                Contact Customer
+            </h3>
+
+            <p
+                class="modal-message"
+                id="modalMessage"
+            >
+                Would you like to send an email to this customer?
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="modal-cancel"
+                    id="modalCancel"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="modal-confirm"
+                    id="modalConfirm"
+                >
+                    Send Email
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+const API_BASE_URL =
+    "http://localhost:3000";
+
+
+const token =
+    sessionStorage.getItem(
+        "jesperAdminToken"
+    );
+
+
+if (!token) {
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+let allEnquiries = [];
+
+
+
+const tableBody =
+    document.getElementById(
+        "enquiryTableBody"
+    );
+
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+const statusFilter =
+    document.getElementById(
+        "statusFilter"
+    );
+
+
+const totalCount =
+    document.getElementById(
+        "totalCount"
+    );
+
+
+const newCount =
+    document.getElementById(
+        "newCount"
+    );
+
+
+const contactedCount =
+    document.getElementById(
+        "contactedCount"
+    );
+
+
+const closedCount =
+    document.getElementById(
+        "closedCount"
+    );
+
+
+const messageBox =
+    document.getElementById(
+        "messageBox"
+    );
+
+
+
+/* =====================================
+   CUSTOM MODAL
+===================================== */
+
+const confirmModal =
+    document.getElementById(
+        "confirmModal"
+    );
+
+
+const modalTitle =
+    document.getElementById(
+        "modalTitle"
+    );
+
+
+const modalMessage =
+    document.getElementById(
+        "modalMessage"
+    );
+
+
+const modalIcon =
+    document.getElementById(
+        "modalIcon"
+    );
+
+
+const modalConfirm =
+    document.getElementById(
+        "modalConfirm"
+    );
+
+
+const modalCancel =
+    document.getElementById(
+        "modalCancel"
+    );
+
+
+let modalResolver = null;
+
+
+
+function showConfirmModal(options) {
+
+    modalTitle.textContent =
+        options.title;
+
+
+    modalMessage.textContent =
+        options.message;
+
+
+    modalConfirm.textContent =
+        options.confirmText ||
+        "Confirm";
+
+
+    modalIcon.textContent =
+        options.icon || "✓";
+
+
+    if (options.danger) {
+
+        modalIcon.classList.add(
+            "danger"
+        );
+
+
+        modalConfirm.classList.add(
+            "danger"
+        );
+
+    }
+    else {
+
+        modalIcon.classList.remove(
+            "danger"
+        );
+
+
+        modalConfirm.classList.remove(
+            "danger"
+        );
+
+    }
+
+
+    confirmModal.classList.add(
+        "show"
+    );
+
+
+    return new Promise(
+        function (resolve) {
+
+            modalResolver =
+                resolve;
+
+        }
+    );
+
+}
+
+
+
+function closeConfirmModal(
+    result
+) {
+
+    confirmModal.classList.remove(
+        "show"
+    );
+
+
+    if (modalResolver) {
+
+        modalResolver(
+            result
+        );
+
+
+        modalResolver =
+            null;
+
+    }
+
+}
+
+
+
+modalConfirm.addEventListener(
+    "click",
+    function () {
+
+        closeConfirmModal(
+            true
+        );
+
+    }
+);
+
+
+
+modalCancel.addEventListener(
+    "click",
+    function () {
+
+        closeConfirmModal(
+            false
+        );
+
+    }
+);
+
+
+
+confirmModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            confirmModal
+        ) {
+
+            closeConfirmModal(
+                false
+            );
+
+        }
+
+    }
+);
+
+
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape" &&
+            confirmModal.classList.contains(
+                "show"
+            )
+        ) {
+
+            closeConfirmModal(
+                false
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   ESCAPE
+===================================== */
+
+function escapeHtml(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+
+/* =====================================
+   FORMAT TYPE
+===================================== */
+
+function formatType(type) {
+
+    const types = {
+
+        product:
+            "Product Enquiry",
+
+        distribution:
+            "Distribution",
+
+        partnership:
+            "Business Partnership",
+
+        general:
+            "General Enquiry"
+
+    };
+
+
+    return (
+        types[type] ||
+        type ||
+        "-"
+    );
+
+}
+
+
+
+/* =====================================
+   DATE
+===================================== */
+
+function formatDate(value) {
+
+    if (!value) {
+
+        return "-";
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return value;
+
+    }
+
+
+    return date.toLocaleString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+function showMessage(
+    message,
+    type
+) {
+
+    messageBox.textContent =
+        message;
+
+
+    messageBox.className =
+        "message-box " +
+        type;
+
+
+    clearTimeout(
+        showMessage.timer
+    );
+
+
+    showMessage.timer =
+        setTimeout(
+            function () {
+
+                messageBox.className =
+                    "message-box";
+
+                messageBox.textContent =
+                    "";
+
+            },
+            4000
+        );
+
+}
+
+
+
+/* =====================================
+   AUTH
+===================================== */
+
+function handleUnauthorized() {
+
+    sessionStorage.removeItem(
+        "jesperAdminToken"
+    );
+
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+
+/* =====================================
+   LOAD
+===================================== */
+
+async function loadEnquiries() {
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/api/admin/enquiries",
+                {
+                    headers: {
+
+                        Authorization:
+                            "Bearer " +
+                            token
+
+                    }
+                }
+            );
+
+
+        if (
+            response.status === 401
+        ) {
+
+            handleUnauthorized();
+
+            return;
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.message ||
+                "Unable to load enquiries."
+            );
+
+        }
+
+
+        allEnquiries =
+            result.enquiries || [];
+
+
+        updateStats();
+
+        renderEnquiries();
+
+    }
+    catch (error) {
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+
+/* =====================================
+   COUNTS
+===================================== */
+
+function updateStats() {
+
+    totalCount.textContent =
+        allEnquiries.length;
+
+
+    newCount.textContent =
+        allEnquiries.filter(
+            item =>
+                item.status ===
+                "New"
+        ).length;
+
+
+    contactedCount.textContent =
+        allEnquiries.filter(
+            item =>
+                item.status ===
+                "Contacted"
+        ).length;
+
+
+    closedCount.textContent =
+        allEnquiries.filter(
+            item =>
+                item.status ===
+                "Closed"
+        ).length;
+
+}
+
+
+
+/* =====================================
+   FILTER
+===================================== */
+
+function getFilteredEnquiries() {
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    const status =
+        statusFilter.value;
+
+
+    return allEnquiries.filter(
+        function (item) {
+
+            const text =
+                [
+                    item.full_name,
+                    item.phone,
+                    item.email,
+                    item.company,
+                    item.enquiry_type,
+                    item.message
+                ]
+                .join(" ")
+                .toLowerCase();
+
+
+            const searchMatch =
+                !search ||
+                text.includes(
+                    search
+                );
+
+
+            const statusMatch =
+                status === "All" ||
+                item.status === status;
+
+
+            return (
+                searchMatch &&
+                statusMatch
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================
+   RENDER
+===================================== */
+
+function renderEnquiries() {
+
+    const enquiries =
+        getFilteredEnquiries();
+
+
+    if (
+        enquiries.length === 0
+    ) {
+
+        tableBody.innerHTML =
+            `
+            <tr>
+                <td
+                    colspan="8"
+                    class="empty-state"
+                >
+                    No enquiries found.
+                </td>
+            </tr>
+            `;
+
+
+        return;
+
+    }
+
+
+    tableBody.innerHTML =
+        enquiries
+        .map(
+            function (item) {
+
+                return `
+
+                <tr>
+
+                    <td>
+
+                        <div class="customer-name">
+
+                            ${escapeHtml(
+                                item.full_name
+                            )}
+
+                        </div>
+
+                        <div class="enquiry-id">
+
+                            #${item.id}
+
+                        </div>
+
+                    </td>
+
+
+                    <td class="contact-info">
+
+                        <a href="tel:${escapeHtml(item.phone)}">
+
+                            ${escapeHtml(
+                                item.phone
+                            )}
+
+                        </a>
+
+                        <a href="mailto:${escapeHtml(item.email)}">
+
+                            ${escapeHtml(
+                                item.email
+                            )}
+
+                        </a>
+
+                    </td>
+
+
+                    <td>
+
+                        ${
+                            escapeHtml(
+                                item.company
+                            ) || "-"
+                        }
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="type-badge">
+
+                            ${escapeHtml(
+                                formatType(
+                                    item.enquiry_type
+                                )
+                            )}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="enquiry-message">
+
+                            ${escapeHtml(
+                                item.message
+                            )}
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        ${escapeHtml(
+                            formatDate(
+                                item.created_at
+                            )
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        <select
+                            class="status-select"
+                            data-status-id="${item.id}"
+                        >
+
+                            <option
+                                value="New"
+                                ${
+                                    item.status ===
+                                    "New"
+                                    ? "selected"
+                                    : ""
+                                }
+                            >
+                                New
+                            </option>
+
+
+                            <option
+                                value="Contacted"
+                                ${
+                                    item.status ===
+                                    "Contacted"
+                                    ? "selected"
+                                    : ""
+                                }
+                            >
+                                Contacted
+                            </option>
+
+
+                            <option
+                                value="Closed"
+                                ${
+                                    item.status ===
+                                    "Closed"
+                                    ? "selected"
+                                    : ""
+                                }
+                            >
+                                Closed
+                            </option>
+
+                        </select>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="action-buttons">
+
+                            <button
+                                class="contact-button"
+                                data-contact-id="${item.id}"
+                                data-customer-name="${escapeHtml(item.full_name)}"
+                            >
+                                Contact
+                            </button>
+
+
+                            <button
+                                class="delete-button"
+                                data-delete-id="${item.id}"
+                                data-customer-name="${escapeHtml(item.full_name)}"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    attachTableEvents();
+
+}
+
+
+
+/* =====================================
+   EVENTS
+===================================== */
+
+function attachTableEvents() {
+
+
+    document
+        .querySelectorAll(
+            ".contact-button"
+        )
+        .forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    async function () {
+
+                        const id =
+                            button.dataset
+                                .contactId;
+
+
+                        const name =
+                            button.dataset
+                                .customerName;
+
+
+                        const confirmed =
+                            await showConfirmModal({
+
+                                title:
+                                    "Contact Customer",
+
+                                message:
+                                    `Send a professional Jesper Pharma email to ${name}? The enquiry status will automatically change to Contacted.`,
+
+                                confirmText:
+                                    "Send Email",
+
+                                icon:
+                                    "✉",
+
+                                danger:
+                                    false
+
+                            });
+
+
+                        if (!confirmed) {
+
+                            return;
+
+                        }
+
+
+                        await contactCustomer(
+                            id,
+                            button
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    document
+        .querySelectorAll(
+            ".delete-button"
+        )
+        .forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    async function () {
+
+                        const id =
+                            button.dataset
+                                .deleteId;
+
+
+                        const name =
+                            button.dataset
+                                .customerName;
+
+
+                        const confirmed =
+                            await showConfirmModal({
+
+                                title:
+                                    "Delete Enquiry",
+
+                                message:
+                                    `Are you sure you want to permanently delete ${name}'s enquiry? This action cannot be undone.`,
+
+                                confirmText:
+                                    "Delete",
+
+                                icon:
+                                    "!",
+
+                                danger:
+                                    true
+
+                            });
+
+
+                        if (!confirmed) {
+
+                            return;
+
+                        }
+
+
+                        await deleteEnquiry(
+                            id,
+                            button
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    document
+        .querySelectorAll(
+            ".status-select"
+        )
+        .forEach(
+            function (select) {
+
+                select.addEventListener(
+                    "change",
+                    async function () {
+
+                        await updateStatus(
+                            select.dataset
+                                .statusId,
+
+                            select.value
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+
+/* =====================================
+   CONTACT CUSTOMER
+===================================== */
+
+async function contactCustomer(
+    id,
+    button
+) {
+
+    const originalText =
+        button.textContent;
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "Sending...";
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_BASE_URL +
+                "/api/admin/enquiries/" +
+                id +
+                "/contact",
+
+                {
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        Authorization:
+                            "Bearer " +
+                            token
+
+                    }
+                }
+
+            );
+
+
+        if (
+            response.status === 401
+        ) {
+
+            handleUnauthorized();
+
+            return;
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.message ||
+                "Unable to contact customer."
+            );
+
+        }
+
+
+        const enquiry =
+            allEnquiries.find(
+                item =>
+                    String(item.id) ===
+                    String(id)
+            );
+
+
+        if (enquiry) {
+
+            enquiry.status =
+                "Contacted";
+
+        }
+
+
+        updateStats();
+
+        renderEnquiries();
+
+
+        showMessage(
+            result.message ||
+            "Email sent successfully.",
+            "success"
+        );
+
+    }
+    catch (error) {
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            originalText;
+
+
+        showMessage(
+            error.message ||
+            "Unable to send email.",
+            "error"
+        );
+
+    }
+
+}
+
+
+
+/* =====================================
+   STATUS
+===================================== */
+
+async function updateStatus(
+    id,
+    status
+) {
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_BASE_URL +
+                "/api/admin/enquiries/" +
+                id +
+                "/status",
+
+                {
+                    method:
+                        "PATCH",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        Authorization:
+                            "Bearer " +
+                            token
+
+                    },
+
+                    body:
+                        JSON.stringify({
+                            status
+                        })
+
+                }
+
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.message
+            );
+
+        }
+
+
+        const enquiry =
+            allEnquiries.find(
+                item =>
+                    String(item.id) ===
+                    String(id)
+            );
+
+
+        if (enquiry) {
+
+            enquiry.status =
+                status;
+
+        }
+
+
+        updateStats();
+
+
+        showMessage(
+            "Status updated successfully.",
+            "success"
+        );
+
+    }
+    catch (error) {
+
+        showMessage(
+            "Unable to update status.",
+            "error"
+        );
+
+
+        loadEnquiries();
+
+    }
+
+}
+
+
+
+/* =====================================
+   DELETE
+===================================== */
+
+async function deleteEnquiry(
+    id,
+    button
+) {
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "Deleting...";
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_BASE_URL +
+                "/api/admin/enquiries/" +
+                id,
+
+                {
+                    method:
+                        "DELETE",
+
+                    headers: {
+
+                        Authorization:
+                            "Bearer " +
+                            token
+
+                    }
+                }
+
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.message
+            );
+
+        }
+
+
+        allEnquiries =
+            allEnquiries.filter(
+                item =>
+                    String(item.id) !==
+                    String(id)
+            );
+
+
+        updateStats();
+
+        renderEnquiries();
+
+
+        showMessage(
+            "Enquiry deleted successfully.",
+            "success"
+        );
+
+    }
+    catch (error) {
+
+        showMessage(
+            "Unable to delete enquiry.",
+            "error"
+        );
+
+
+        loadEnquiries();
+
+    }
+
+}
+
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+searchInput.addEventListener(
+    "input",
+    renderEnquiries
+);
+
+
+statusFilter.addEventListener(
+    "change",
+    renderEnquiries
+);
+
+
+
+/* =====================================
+   VIEW WEBSITE
+===================================== */
+
+document
+    .getElementById(
+        "viewWebsiteBtn"
+    )
+    .addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+document
+    .getElementById(
+        "logoutBtn"
+    )
+    .addEventListener(
+        "click",
+        async function () {
+
+            try {
+
+                await fetch(
+
+                    API_BASE_URL +
+                    "/api/admin/logout",
+
+                    {
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            Authorization:
+                                "Bearer " +
+                                token
+
+                        }
+                    }
+
+                );
+
+            }
+            catch (error) {
+
+                console.log(
+                    "Logout request failed."
+                );
+
+            }
+
+
+            sessionStorage.removeItem(
+                "jesperAdminToken"
+            );
+
+
+            window.location.href =
+                "admin-login.html";
+
+        }
+    );
+
+
+
+/* =====================================
+   START
+===================================== */
+
+loadEnquiries();
+
+</script>
+
+
+</body>
+</html>

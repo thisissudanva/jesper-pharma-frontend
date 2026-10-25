@@ -28,6 +28,189 @@
     <link rel="stylesheet" href="./css/products.css">   
     <link rel="stylesheet" href="./css/contact.css">   
     <link rel="stylesheet" href="./css/mega-menu.css">
+    <style>
+/* ================================
+   HOMEPAGE PRODUCTS TEASER FIX
+================================ */
+
+.products-teaser {
+    padding: 105px 0;
+    background: #f5f7f8;
+}
+
+.products-teaser-container {
+    width: 92%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.products-teaser-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 90px;
+    align-items: center;
+}
+
+.products-teaser-label {
+    margin-bottom: 16px;
+    color: #0b8bd3;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.products-teaser-content h2 {
+    max-width: 620px;
+    margin: 0;
+    color: #22292d;
+    font-size: 46px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.products-teaser-description {
+    max-width: 570px;
+    margin-top: 22px;
+    color: #68747a;
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.products-teaser-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-top: 30px;
+    padding: 14px 23px;
+
+    background: #0b8bd3;
+    border: 1px solid #0b8bd3;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+.products-teaser-button:hover {
+    background: #075d8e;
+    border-color: #075d8e;
+}
+
+.products-teaser-list {
+    border-top: 1px solid #d6e0e5;
+}
+
+.products-teaser-item {
+    min-height: 105px;
+    padding: 20px 10px;
+
+    display: grid;
+    grid-template-columns: 55px 1fr 45px;
+    gap: 20px;
+    align-items: center;
+
+    border-bottom: 1px solid #d6e0e5;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition: 0.25s ease;
+}
+
+.products-teaser-item:hover {
+    padding-left: 18px;
+    background: white;
+}
+
+.products-teaser-number {
+    color: rgba(11, 139, 211, 0.45);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.products-teaser-small {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #0b8bd3;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.products-teaser-item h3 {
+    margin: 0;
+
+    color: #263137;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.products-teaser-arrow {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #cbd8de;
+    border-radius: 50%;
+
+    color: #0b8bd3;
+    font-size: 19px;
+
+    transition: 0.25s ease;
+}
+
+.products-teaser-item:hover .products-teaser-arrow {
+    background: #0b8bd3;
+    border-color: #0b8bd3;
+    color: white;
+}
+
+@media (max-width: 950px) {
+    .products-teaser-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .products-teaser {
+        padding: 70px 0;
+    }
+
+    .products-teaser-content h2 {
+        font-size: 34px;
+    }
+
+    .products-teaser-description {
+        font-size: 16px;
+    }
+
+    .products-teaser-item {
+        grid-template-columns: 42px 1fr 38px;
+        gap: 12px;
+    }
+
+    .products-teaser-item h3 {
+        font-size: 21px;
+    }
+
+    .products-teaser-arrow {
+        width: 36px;
+        height: 36px;
+    }
+}
+</style>
 </head>
 
 
@@ -158,36 +341,34 @@
             <!-- CENTER LINKS -->
             <div class="mega-links">
 
-                <h3>
-                    Company
-                </h3>
+    <h3>Company</h3>
 
-                <a href="#about">
-                    Who We Are
-                    <span>→</span>
-                </a>
+    <a href="#about">
+        Who We Are
+        <span>→</span>
+    </a>
 
-                <a href="#about">
-                    Our Story
-                    <span>→</span>
-                </a>
+    <a href="#our-story">
+        Our Story
+        <span>→</span>
+    </a>
 
-                <a href="#about">
-                    Mission & Vision
-                    <span>→</span>
-                </a>
+    <a href="#mission-vision">
+        Mission & Vision
+        <span>→</span>
+    </a>
 
-                <a href="#snapshot">
-                    Jesper at a Glance
-                    <span>→</span>
-                </a>
+    <a href="#snapshot">
+        Jesper at a Glance
+        <span>→</span>
+    </a>
 
-                <a href="#why-jesper">
-                    Why Jesper
-                    <span>→</span>
-                </a>
+    <a href="#why-jesper">
+        Why Jesper
+        <span>→</span>
+    </a>
 
-            </div>
+</div>
 
 
             <!-- RIGHT VIDEO -->
@@ -251,33 +432,31 @@
             </div>
 
 
-            <div class="mega-links">
+        <div class="mega-links">
 
-                <h3>
-                    Services
-                </h3>
+    <h3>Services</h3>
 
-                <a href="#business">
-                    Pharmaceutical Distribution
-                    <span>→</span>
-                </a>
+    <a href="#pharma-distribution">
+        Pharmaceutical Distribution
+        <span>→</span>
+    </a>
 
-                <a href="#business">
-                    Supply Coordination
-                    <span>→</span>
-                </a>
+    <a href="#supply-coordination">
+        Supply Coordination
+        <span>→</span>
+    </a>
 
-                <a href="#business">
-                    Partner Support
-                    <span>→</span>
-                </a>
+    <a href="#partner-support">
+        Partner Support
+        <span>→</span>
+    </a>
 
-                <a href="#snapshot">
-                    Distribution Network
-                    <span>→</span>
-                </a>
+    <a href="#distribution-network">
+        Distribution Network
+        <span>→</span>
+    </a>
 
-            </div>
+</div>
 
 
             <div class="mega-media">
@@ -339,46 +518,42 @@
 
             </div>
 
+<div class="mega-links">
 
-            <div class="mega-links">
+    <h3>Product Range</h3>
 
-                <h3>
-                    Product Range
-                </h3>
+    <a href="#products"
+       onclick="selectProductCategory('tablets'); return false;">
+        Tablets
+        <span>→</span>
+    </a>
 
-                <a href="#products"
-                   data-product-filter="tablets">
-                    Tablets
-                    <span>→</span>
-                </a>
+    <a href="#products"
+       onclick="selectProductCategory('capsules'); return false;">
+        Capsules
+        <span>→</span>
+    </a>
 
-                <a href="#products"
-                   data-product-filter="capsules">
-                    Capsules
-                    <span>→</span>
-                </a>
+    <a href="#products"
+       onclick="selectProductCategory('liquids'); return false;">
+        Oral Liquids
+        <span>→</span>
+    </a>
 
-                <a href="#products"
-                   data-product-filter="liquids">
-                    Oral Liquids
-                    <span>→</span>
-                </a>
+    <a href="#products"
+       onclick="selectProductCategory('healthcare'); return false;">
+        Healthcare Range
+        <span>→</span>
+    </a>
 
-                <a href="#products"
-                   data-product-filter="healthcare">
-                    Healthcare Range
-                    <span>→</span>
-                </a>
-
-            </div>
-
+</div>
 
             <div class="mega-media">
 
-                <video autoplay
-                       muted
-                       loop
-                       playsinline>
+                <video muted
+                        loop
+                        playsinline
+                        preload="metadata" >
 
                     <source src="./assets/videos/D2.mp4"
                             type="video/mp4">
@@ -602,6 +777,120 @@
 
 </section>
 
+<!-- =====================================
+     OUR STORY
+===================================== -->
+
+<section class="story-section" id="our-story">
+
+    <div class="story-container">
+
+        <div class="story-heading">
+
+            <p class="section-name">
+                OUR STORY
+            </p>
+
+            <h2>
+                Growing through trust,
+                service and healthcare partnerships.
+            </h2>
+
+        </div>
+
+
+        <div class="story-content">
+
+            <p class="story-lead">
+                Jesper Pharma was built with a clear purpose —
+                to support healthcare through dependable
+                pharmaceutical distribution.
+            </p>
+
+            <p>
+                Our journey is focused on building strong
+                relationships with healthcare partners,
+                maintaining reliable supply and providing
+                responsive professional service.
+            </p>
+
+            <p>
+                As the company grows, our commitment remains
+                centred on responsible distribution and
+                dependable healthcare support.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     MISSION & VISION
+===================================== -->
+
+<section class="mission-section" id="mission-vision">
+
+    <div class="mission-container">
+
+
+        <div class="mission-heading">
+
+            <p class="section-name">
+                OUR DIRECTION
+            </p>
+
+            <h2>
+                Focused on dependable healthcare distribution.
+            </h2>
+
+        </div>
+
+
+        <div class="mission-grid">
+
+
+            <div class="mission-item">
+
+                <span>01</span>
+
+                <h3>
+                    Our Mission
+                </h3>
+
+                <p>
+                    To support healthcare partners through
+                    reliable pharmaceutical supply,
+                    responsible distribution and
+                    professional service.
+                </p>
+
+            </div>
+
+
+            <div class="mission-item">
+
+                <span>02</span>
+
+                <h3>
+                    Our Vision
+                </h3>
+
+                <p>
+                    To build lasting healthcare partnerships
+                    and grow as a trusted pharmaceutical
+                    distribution company.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
 
 
 <!-- =====================================
@@ -666,7 +955,7 @@
 
         <div class="business-services">
 
-            <div class="business-item">
+            <div class="business-item" id="pharma-distribution">
 
                 <span>01</span>
 
@@ -684,7 +973,7 @@
             </div>
 
 
-            <div class="business-item">
+            <div class="business-item" id="supply-coordination">
 
                 <span>02</span>
 
@@ -702,7 +991,7 @@
             </div>
 
 
-            <div class="business-item">
+            <div class="business-item" id="partner-support">
 
                 <span>03</span>
 
@@ -720,6 +1009,51 @@
             </div>
 
         </div>
+
+        <div class="distribution-network"
+     id="distribution-network">
+
+    <div class="network-content">
+
+        <p class="section-name">
+            DISTRIBUTION NETWORK
+        </p>
+
+        <h2>
+            Connecting healthcare through
+            organised distribution.
+        </h2>
+
+        <p>
+            Jesper Pharma works to support dependable
+            pharmaceutical movement across its service
+            network through coordinated supply,
+            responsive communication and professional
+            partner support.
+        </p>
+
+    </div>
+
+    <div class="network-points">
+
+        <div>
+            <strong>Reliable</strong>
+            <span>Supply Management</span>
+        </div>
+
+        <div>
+            <strong>Responsive</strong>
+            <span>Partner Coordination</span>
+        </div>
+
+        <div>
+            <strong>Organised</strong>
+            <span>Distribution Support</span>
+        </div>
+
+    </div>
+
+</div>
 
     </div>
 
@@ -807,7 +1141,7 @@
      WHY JESPER
 ===================================== -->
 
-<section class="why-section">
+<section class="why-section" id="why-jesper">
 
     <div class="why-container">
 
@@ -908,281 +1242,170 @@
 ===================================== -->
 
 <!-- =====================================
-     PRODUCTS SECTION
+     PRODUCTS PORTFOLIO PREVIEW
 ===================================== -->
 
-<section class="products-section" id="products">
+<section class="products-teaser" id="products">
 
-    <div class="products-container">
+    <div class="products-teaser-container">
 
-        <div class="products-top">
+        <div class="products-teaser-grid">
 
-            <div>
-                <p class="section-name">
+            <!-- LEFT CONTENT -->
+
+            <div class="products-teaser-content">
+
+                <p class="products-teaser-label">
                     OUR PRODUCTS
                 </p>
 
                 <h2>
-                    Explore Our Product Range
+                    Pharmaceutical products
+                    supported by dependable
+                    distribution.
                 </h2>
+
+                <p class="products-teaser-description">
+                    Explore key pharmaceutical and
+                    healthcare categories supported
+                    through Jesper Pharma's business
+                    and distribution network.
+                </p>
+
+                <a
+                    href="./products.html"
+                    class="products-teaser-button"
+                >
+                    Explore Full Portfolio
+                    <span>→</span>
+                </a>
+
             </div>
 
-            <p class="products-intro">
-                Browse pharmaceutical product categories
-                supported through Jesper Pharma's
-                distribution network.
-            </p>
 
-        </div>
+            <!-- RIGHT CATEGORY LIST -->
+
+            <div class="products-teaser-list">
 
 
-        <!-- FILTER BUTTONS -->
+                <a
+                    href="./products.html#products"
+                    class="products-teaser-item"
+                >
 
-        <div class="product-filters">
-
-            <button
-                class="filter-btn active"
-                data-filter="all">
-                All
-            </button>
-
-            <button
-                class="filter-btn"
-                data-filter="tablets">
-                Tablets
-            </button>
-
-            <button
-                class="filter-btn"
-                data-filter="capsules">
-                Capsules
-            </button>
-
-            <button
-                class="filter-btn"
-                data-filter="liquids">
-                Oral Liquids
-            </button>
-
-            <button
-                class="filter-btn"
-                data-filter="healthcare">
-                Healthcare
-            </button>
-
-        </div>
-
-
-        <!-- PRODUCT GRID -->
-
-        <div class="product-grid">
-
-
-            <!-- PRODUCT 1 -->
-
-            <article
-                class="product-card"
-                data-category="tablets">
-
-                <div class="product-image tablet-image">
-
-                    <div class="product-image-label">
-                        Tablets
-                    </div>
-
-                </div>
-
-
-                <div class="product-card-content">
-
-                    <span class="product-category">
-                        TABLETS
+                    <span class="products-teaser-number">
+                        01
                     </span>
 
-                    <h3>
-                        Tablet Range
-                    </h3>
+                    <div>
 
-                    <p>
-                        Pharmaceutical tablet products
-                        available through the Jesper
-                        distribution portfolio.
-                    </p>
+                        <span class="products-teaser-small">
+                            PHARMACEUTICAL
+                        </span>
 
-                    <button
-                        class="view-product"
-                        data-title="Tablet Range"
-                        data-category="Tablets"
-                        data-description="Explore tablet-based pharmaceutical products distributed through Jesper Pharma. Actual product brands and formulations can be added after the official portfolio is confirmed.">
+                        <h3>
+                            Tablets
+                        </h3>
 
-                        View Details
-                        <span>→</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 2 -->
-
-            <article
-                class="product-card"
-                data-category="capsules">
-
-                <div class="product-image capsule-image">
-
-                    <div class="product-image-label">
-                        Capsules
                     </div>
 
-                </div>
-
-
-                <div class="product-card-content">
-
-                    <span class="product-category">
-                        CAPSULES
+                    <span class="products-teaser-arrow">
+                        →
                     </span>
 
-                    <h3>
-                        Capsule Range
-                    </h3>
-
-                    <p>
-                        Capsule-based pharmaceutical
-                        products supported through
-                        professional distribution.
-                    </p>
-
-                    <button
-                        class="view-product"
-                        data-title="Capsule Range"
-                        data-category="Capsules"
-                        data-description="This category represents capsule-based pharmaceutical products within the Jesper Pharma distribution portfolio.">
-
-                        View Details
-                        <span>→</span>
-
-                    </button>
-
-                </div>
-
-            </article>
+                </a>
 
 
+                <a
+                    href="./products.html#products"
+                    class="products-teaser-item"
+                >
 
-            <!-- PRODUCT 3 -->
+                    <span class="products-teaser-number">
+                        02
+                    </span>
 
-            <article
-                class="product-card"
-                data-category="liquids">
+                    <div>
 
-                <div class="product-image liquid-image">
+                        <span class="products-teaser-small">
+                            PHARMACEUTICAL
+                        </span>
 
-                    <div class="product-image-label">
-                        Oral Liquids
+                        <h3>
+                            Capsules
+                        </h3>
+
                     </div>
 
-                </div>
-
-
-                <div class="product-card-content">
-
-                    <span class="product-category">
-                        ORAL LIQUIDS
+                    <span class="products-teaser-arrow">
+                        →
                     </span>
 
-                    <h3>
-                        Liquid Range
-                    </h3>
-
-                    <p>
-                        Oral liquid pharmaceutical
-                        products for healthcare
-                        distribution channels.
-                    </p>
-
-                    <button
-                        class="view-product"
-                        data-title="Oral Liquid Range"
-                        data-category="Oral Liquids"
-                        data-description="This category represents oral liquid pharmaceutical products supported through Jesper Pharma's distribution operations.">
-
-                        View Details
-                        <span>→</span>
-
-                    </button>
-
-                </div>
-
-            </article>
+                </a>
 
 
+                <a
+                    href="./products.html#products"
+                    class="products-teaser-item"
+                >
 
-            <!-- PRODUCT 4 -->
+                    <span class="products-teaser-number">
+                        03
+                    </span>
 
-            <article
-                class="product-card"
-                data-category="healthcare">
+                    <div>
 
-                <div class="product-image healthcare-image">
+                        <span class="products-teaser-small">
+                            PHARMACEUTICAL
+                        </span>
 
-                    <div class="product-image-label">
-                        Healthcare
+                        <h3>
+                            Oral Liquids
+                        </h3>
+
                     </div>
 
-                </div>
-
-
-                <div class="product-card-content">
-
-                    <span class="product-category">
-                        HEALTHCARE
+                    <span class="products-teaser-arrow">
+                        →
                     </span>
 
-                    <h3>
-                        Healthcare Range
-                    </h3>
-
-                    <p>
-                        A wider healthcare portfolio
-                        supported through Jesper Pharma.
-                    </p>
-
-                    <button
-                        class="view-product"
-                        data-title="Healthcare Range"
-                        data-category="Healthcare"
-                        data-description="This section can contain additional healthcare products distributed by Jesper Pharma once the official portfolio is provided.">
-
-                        View Details
-                        <span>→</span>
-
-                    </button>
-
-                </div>
-
-            </article>
+                </a>
 
 
-        </div>
+                <a
+                    href="./products.html#products"
+                    class="products-teaser-item"
+                >
 
+                    <span class="products-teaser-number">
+                        04
+                    </span>
 
-        <!-- EMPTY MESSAGE -->
+                    <div>
 
-        <div class="no-products" id="noProducts">
+                        <span class="products-teaser-small">
+                            HEALTHCARE
+                        </span>
 
-            No products found in this category.
+                        <h3>
+                            Healthcare Range
+                        </h3>
+
+                    </div>
+
+                    <span class="products-teaser-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </div>
 
         </div>
 
     </div>
 
 </section>
-
 
 
 <!-- =====================================
@@ -1505,7 +1728,7 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#business">Our Business</a>
-            <a href="#products">Products</a>
+            <a href="./products.html">Products</a>
             <a href="#contact">Contact</a>
 
         </div>
@@ -1519,11 +1742,11 @@
 </footer>
 
 
-<script src="./js/script.js"></script>
 <div class="mega-backdrop"
      id="megaBackdrop">
 </div>
 
-</body>
+<script src="./js/script.js"></script>
 
+</body>
 </html>

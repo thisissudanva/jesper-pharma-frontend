@@ -97,19 +97,26 @@ button {
 ========================================================= */
 
 .logo {
-    width: 180px;
+    width: 170px;
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
 }
 
 .logo img {
-    width: 100%;
-    height: 74px;
+    width: 150px;
+    height: auto;
+
+    max-height: none;
 
     object-fit: contain;
     object-position: left center;
-}
+
+    display: block;
+
+    transform: none;
+}   
 
 
 /* =========================================================
@@ -245,27 +252,26 @@ button {
 
 .hero {
     position: relative;
-
-    width: 100%;
-    height: 650px;
-
+    min-height: 100vh;
     overflow: hidden;
 
-    background: var(--deep-blue);
+    display: flex;
+    align-items: center;
 }
-
 
 /* VIDEO */
 
 .hero-video {
     position: absolute;
-
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
+
+    z-index: 1;
+
+    filter: none;
+    opacity: 1;
 }
 
 
@@ -273,17 +279,16 @@ button {
 
 .hero-overlay {
     position: absolute;
-
     inset: 0;
 
-    background:
-        linear-gradient(
-            90deg,
-            rgba(3, 42, 66, 0.86) 0%,
-            rgba(4, 55, 82, 0.72) 42%,
-            rgba(5, 67, 99, 0.34) 72%,
-            rgba(5, 67, 99, 0.10) 100%
-        );
+    background: linear-gradient(
+        90deg,
+        rgba(5, 34, 54, 0.72) 0%,
+        rgba(5, 34, 54, 0.50) 35%,
+        rgba(5, 34, 54, 0.18) 100%
+    );
+
+    z-index: 2;
 }
 
 
@@ -308,9 +313,8 @@ button {
 }
 
 .hero-content {
-    width: 680px;
-
-    color: #ffffff;
+    position: relative;
+    z-index: 3;
 }
 
 
@@ -325,7 +329,10 @@ button {
     letter-spacing: -1px;
 
     font-weight: 700;
+
+    color: #ffffff !important;
 }
+
 
 .hero-content h1 span {
     display: block;
@@ -1145,9 +1152,11 @@ button {
         width: 150px;
     }
 
-    .logo img {
-        height: 62px;
-    }
+        .site-logo img {
+    height: 72px;
+    width: auto;
+    display: block;
+}
 
     .main-nav {
         display: none;
@@ -2388,6 +2397,273 @@ body.modal-open {
     .snapshot-item p {
 
         font-size: 17px;
+    }
+
+}
+
+/* =========================================================
+   OUR STORY
+========================================================= */
+
+.story-section {
+    padding: 105px 0;
+    background: #ffffff;
+}
+
+.story-container {
+    width: 92%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+}
+
+.story-heading h2 {
+    max-width: 620px;
+
+    color: #25292c;
+
+    font-size: 44px;
+    line-height: 1.18;
+
+    font-weight: 700;
+}
+
+.story-content {
+    padding-top: 37px;
+}
+
+.story-content p {
+    max-width: 620px;
+
+    margin-bottom: 20px;
+
+    color: #626c72;
+
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.story-content .story-lead {
+    color: #343a3e;
+
+    font-size: 19px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   MISSION & VISION
+========================================================= */
+
+.mission-section {
+    padding: 105px 0;
+
+    background: #edf7fc;
+
+    border-top: 1px solid #d9eaf2;
+    border-bottom: 1px solid #d9eaf2;
+}
+
+.mission-container {
+    width: 92%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+}
+
+.mission-heading {
+    margin-bottom: 55px;
+}
+
+.mission-heading h2 {
+    max-width: 720px;
+
+    color: #23282c;
+
+    font-size: 44px;
+    line-height: 1.18;
+
+    font-weight: 700;
+}
+
+.mission-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    border-top: 1px solid #c9dbe3;
+}
+
+.mission-item {
+    min-height: 280px;
+
+    padding: 35px 55px 35px 0;
+
+    border-right: 1px solid #c9dbe3;
+}
+
+.mission-item:nth-child(2) {
+    padding-left: 55px;
+    border-right: 0;
+}
+
+.mission-item > span {
+    color: #0b8bd3;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.mission-item h3 {
+    margin-top: 28px;
+
+    color: #075d8e;
+
+    font-size: 29px;
+    font-weight: 700;
+}
+
+.mission-item p {
+    max-width: 480px;
+
+    margin-top: 16px;
+
+    color: #5e6970;
+
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   ANCHOR OFFSET
+========================================================= */
+
+#about,
+#our-story,
+#mission-vision,
+#snapshot,
+#why-jesper,
+#business,
+#products,
+#contact {
+    scroll-margin-top: 110px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+
+    .story-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .story-content {
+        padding-top: 0;
+    }
+
+    .mission-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-item,
+    .mission-item:nth-child(2) {
+        min-height: auto;
+
+        padding: 30px 0;
+
+        border-right: 0;
+        border-bottom: 1px solid #c9dbe3;
+    }
+
+}
+
+
+/* =========================================================
+   DISTRIBUTION NETWORK
+========================================================= */
+
+.distribution-network {
+    margin-top: 70px;
+    padding: 65px;
+
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 80px;
+
+    background: #edf7fc;
+    border: 1px solid #d6e8f1;
+}
+
+.network-content h2 {
+    max-width: 620px;
+
+    color: #24292d;
+
+    font-size: 38px;
+    line-height: 1.2;
+}
+
+.network-content > p:last-child {
+    max-width: 600px;
+
+    margin-top: 20px;
+
+    color: #626c72;
+
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.network-points {
+    border-top: 1px solid #bfd5df;
+}
+
+.network-points > div {
+    padding: 20px 0;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+
+    border-bottom: 1px solid #bfd5df;
+}
+
+.network-points strong {
+    color: #075d8e;
+    font-size: 18px;
+}
+
+.network-points span {
+    color: #667179;
+    font-size: 16px;
+    text-align: right;
+}
+
+
+/* Anchor offset */
+
+#pharma-distribution,
+#supply-coordination,
+#partner-support,
+#distribution-network {
+    scroll-margin-top: 120px;
+}
+
+
+@media (max-width: 850px) {
+
+    .distribution-network {
+        padding: 40px 30px;
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
     }
 
 }

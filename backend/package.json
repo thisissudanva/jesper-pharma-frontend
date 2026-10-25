@@ -1,0 +1,25 @@
+{
+  "name": "jesper-pharma-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Jesper Pharma website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "jesper",
+    "pharma",
+    "express",
+    "mysql"
+  ],
+  "author": "Jesper Pharma",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.24.4",
+    "nodemailer": "^10.1.7"
+  }
+}

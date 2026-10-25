@@ -1,73 +1,90 @@
-const menuButton =
-    document.getElementById("menuButton");
+document.addEventListener("DOMContentLoaded", function () {
 
-const mainNav =
-    document.getElementById("mainNav");
+    /* =====================================================
+       JESPER PHARMA - MAIN JAVASCRIPT
+    ===================================================== */
 
-
-menuButton.addEventListener(
-    "click",
-    function () {
-
-        mainNav.classList.toggle("open");
-
-    }
-);
+    const API_BASE_URL = "http://localhost:3000";
 
 
-mainNav
-    .querySelectorAll("a")
-    .forEach(function (link) {
+    /* =====================================================
+       MOBILE NAVIGATION
+    ===================================================== */
 
-        link.addEventListener(
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const mainNav =
+        document.getElementById("mainNav");
+
+
+    if (menuButton && mainNav) {
+
+        menuButton.addEventListener(
             "click",
             function () {
 
-                mainNav.classList.remove("open");
+                mainNav.classList.toggle("open");
 
             }
         );
 
-    });
 
-/* =====================================================
-   PRODUCT FILTER
-===================================================== */
+        mainNav
+            .querySelectorAll("a")
+            .forEach(function (link) {
 
-const filterButtons =
-    document.querySelectorAll(".filter-btn");
+                link.addEventListener(
+                    "click",
+                    function () {
 
-const productCards =
-    document.querySelectorAll(".product-card");
+                        mainNav.classList.remove("open");
 
-const noProducts =
-    document.getElementById("noProducts");
+                    }
+                );
 
+            });
 
-filterButtons.forEach(function (button) {
-
-    button.addEventListener("click", function () {
-
-        const selectedCategory =
-            button.getAttribute("data-filter");
+    }
 
 
-        /* Active button change */
+    /* =====================================================
+       PRODUCT FILTER
+    ===================================================== */
 
-        filterButtons.forEach(function (btn) {
+    const filterButtons =
+        document.querySelectorAll(".filter-btn");
 
-            btn.classList.remove("active");
+    const productCards =
+        document.querySelectorAll(".product-card");
 
-        });
+    const noProducts =
+        document.getElementById("noProducts");
 
 
-        button.classList.add("active");
-
+    function filterProducts(selectedCategory) {
 
         let visibleProducts = 0;
 
 
-        /* Product filtering */
+        filterButtons.forEach(function (button) {
+
+            const category =
+                button.getAttribute("data-filter");
+
+            if (category === selectedCategory) {
+
+                button.classList.add("active");
+
+            }
+            else {
+
+                button.classList.remove("active");
+
+            }
+
+        });
+
 
         productCards.forEach(function (card) {
 
@@ -85,7 +102,6 @@ filterButtons.forEach(function (button) {
                 visibleProducts++;
 
             }
-
             else {
 
                 card.classList.add("hide");
@@ -95,239 +111,308 @@ filterButtons.forEach(function (button) {
         });
 
 
-        /* No products message */
+        if (noProducts) {
 
-        if (visibleProducts === 0) {
+            if (visibleProducts === 0) {
 
-            noProducts.classList.add("show");
+                noProducts.classList.add("show");
 
-        }
+            }
+            else {
 
-        else {
+                noProducts.classList.remove("show");
 
-            noProducts.classList.remove("show");
-
-        }
-
-    });
-
-});
-
-
-
-/* =====================================================
-   PRODUCT MODAL
-===================================================== */
-
-const productModal =
-    document.getElementById("productModal");
-
-const modalOverlay =
-    document.getElementById("modalOverlay");
-
-const modalClose =
-    document.getElementById("modalClose");
-
-const modalTitle =
-    document.getElementById("modalTitle");
-
-const modalCategory =
-    document.getElementById("modalCategory");
-
-const modalDescription =
-    document.getElementById("modalDescription");
-
-const modalEnquiry =
-    document.getElementById("modalEnquiry");
-
-const viewProductButtons =
-    document.querySelectorAll(".view-product");
-
-
-/* Open modal */
-
-viewProductButtons.forEach(function (button) {
-
-    button.addEventListener("click", function () {
-
-        const title =
-            button.getAttribute("data-title");
-
-        const category =
-            button.getAttribute("data-category");
-
-        const description =
-            button.getAttribute("data-description");
-
-
-        modalTitle.textContent =
-            title;
-
-        modalCategory.textContent =
-            category;
-
-        modalDescription.textContent =
-            description;
-
-
-        productModal.classList.add("open");
-
-        document.body.classList.add("modal-open");
-
-    });
-
-});
-
-
-/* Close modal */
-
-function closeProductModal() {
-
-    productModal.classList.remove("open");
-
-    document.body.classList.remove("modal-open");
-
-}
-
-
-modalClose.addEventListener(
-    "click",
-    closeProductModal
-);
-
-
-modalOverlay.addEventListener(
-    "click",
-    closeProductModal
-);
-
-
-/* ESC key */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (
-            event.key === "Escape" &&
-            productModal.classList.contains("open")
-        ) {
-
-            closeProductModal();
+            }
 
         }
 
     }
-);
 
 
-/* Close modal when enquiry clicked */
+    filterButtons.forEach(function (button) {
 
-modalEnquiry.addEventListener(
-    "click",
-    closeProductModal
-);
+        button.addEventListener(
+            "click",
+            function () {
 
-/* =====================================================
-   CONTACT FORM VALIDATION
-===================================================== */
+                const selectedCategory =
+                    button.getAttribute("data-filter");
 
-const enquiryForm =
-    document.getElementById("enquiryForm");
+                filterProducts(selectedCategory);
 
+            }
+        );
 
-const fullName =
-    document.getElementById("fullName");
-
-const phone =
-    document.getElementById("phone");
-
-const email =
-    document.getElementById("email");
-
-const enquiryType =
-    document.getElementById("enquiryType");
-
-const message =
-    document.getElementById("message");
+    });
 
 
-const nameError =
-    document.getElementById("nameError");
+    /* =====================================================
+       PRODUCT MODAL
+    ===================================================== */
 
-const phoneError =
-    document.getElementById("phoneError");
+    const productModal =
+        document.getElementById("productModal");
 
-const emailError =
-    document.getElementById("emailError");
+    const modalOverlay =
+        document.getElementById("modalOverlay");
 
-const typeError =
-    document.getElementById("typeError");
+    const modalClose =
+        document.getElementById("modalClose");
 
-const messageError =
-    document.getElementById("messageError");
+    const modalTitle =
+        document.getElementById("modalTitle");
 
+    const modalCategory =
+        document.getElementById("modalCategory");
 
-const formSuccess =
-    document.getElementById("formSuccess");
+    const modalDescription =
+        document.getElementById("modalDescription");
 
+    const modalEnquiry =
+        document.getElementById("modalEnquiry");
 
-
-/* =====================================================
-   CLEAR ERROR
-===================================================== */
-
-function clearError(input, errorElement) {
-
-    input.classList.remove("input-error");
-
-    errorElement.textContent = "";
-
-}
+    const viewProductButtons =
+        document.querySelectorAll(".view-product");
 
 
+    function closeProductModal() {
 
-/* =====================================================
-   SHOW ERROR
-===================================================== */
+        if (!productModal) {
+            return;
+        }
 
-function showError(
-    input,
-    errorElement,
-    message
-) {
+        productModal.classList.remove("open");
 
-    input.classList.add("input-error");
+        document.body.classList.remove("modal-open");
 
-    errorElement.textContent = message;
-
-}
+    }
 
 
+    viewProductButtons.forEach(function (button) {
 
-/* =====================================================
-   FORM SUBMIT
-===================================================== */
+        button.addEventListener(
+            "click",
+            function () {
 
-enquiryForm.addEventListener(
-    "submit",
-    function (event) {
+                if (
+                    !productModal ||
+                    !modalTitle ||
+                    !modalCategory ||
+                    !modalDescription
+                ) {
+                    return;
+                }
 
-        event.preventDefault();
 
+                const title =
+                    button.getAttribute("data-title") || "";
+
+                const category =
+                    button.getAttribute("data-category") || "";
+
+                const description =
+                    button.getAttribute("data-description") || "";
+
+
+                modalTitle.textContent =
+                    title;
+
+                modalCategory.textContent =
+                    category;
+
+                modalDescription.textContent =
+                    description;
+
+
+                productModal.classList.add("open");
+
+                document.body.classList.add("modal-open");
+
+            }
+        );
+
+    });
+
+
+    if (modalClose) {
+
+        modalClose.addEventListener(
+            "click",
+            closeProductModal
+        );
+
+    }
+
+
+    if (modalOverlay) {
+
+        modalOverlay.addEventListener(
+            "click",
+            closeProductModal
+        );
+
+    }
+
+
+    if (modalEnquiry) {
+
+        modalEnquiry.addEventListener(
+            "click",
+            closeProductModal
+        );
+
+    }
+
+
+    /* =====================================================
+       CONTACT / ENQUIRY FORM
+    ===================================================== */
+
+    const enquiryForm =
+        document.getElementById("enquiryForm");
+
+    const fullName =
+        document.getElementById("fullName");
+
+    const phone =
+        document.getElementById("phone");
+
+    const email =
+        document.getElementById("email");
+
+    const company =
+        document.getElementById("company");
+
+    const enquiryType =
+        document.getElementById("enquiryType");
+
+    const message =
+        document.getElementById("message");
+
+
+    const nameError =
+        document.getElementById("nameError");
+
+    const phoneError =
+        document.getElementById("phoneError");
+
+    const emailError =
+        document.getElementById("emailError");
+
+    const typeError =
+        document.getElementById("typeError");
+
+    const messageError =
+        document.getElementById("messageError");
+
+    const formSuccess =
+        document.getElementById("formSuccess");
+
+
+    function clearError(input, errorElement) {
+
+        if (input) {
+
+            input.classList.remove("input-error");
+
+        }
+
+        if (errorElement) {
+
+            errorElement.textContent = "";
+
+        }
+
+    }
+
+
+    function showError(
+        input,
+        errorElement,
+        errorMessage
+    ) {
+
+        if (input) {
+
+            input.classList.add("input-error");
+
+        }
+
+        if (errorElement) {
+
+            errorElement.textContent =
+                errorMessage;
+
+        }
+
+    }
+
+
+    function hideFormMessage() {
+
+        if (!formSuccess) {
+            return;
+        }
+
+        formSuccess.classList.remove("show");
+
+    }
+
+
+    function showFormMessage(
+        text,
+        type
+    ) {
+
+        if (!formSuccess) {
+            return;
+        }
+
+
+        formSuccess.textContent =
+            text;
+
+
+        if (type === "error") {
+
+            formSuccess.style.background =
+                "#fdecec";
+
+            formSuccess.style.color =
+                "#9f2d2d";
+
+            formSuccess.style.borderLeftColor =
+                "#c33737";
+
+        }
+        else {
+
+            formSuccess.style.background =
+                "#eaf7ef";
+
+            formSuccess.style.color =
+                "#28633f";
+
+            formSuccess.style.borderLeftColor =
+                "#23844d";
+
+        }
+
+
+        formSuccess.classList.add("show");
+
+    }
+
+
+    function validateEnquiryForm() {
 
         let formValid = true;
 
 
-        /* Clear previous success */
-
-        formSuccess.classList.remove("show");
+        hideFormMessage();
 
 
-
-        /* ---------------------------
-           NAME
-        --------------------------- */
+        /* NAME */
 
         clearError(
             fullName,
@@ -336,6 +421,7 @@ enquiryForm.addEventListener(
 
 
         if (
+            !fullName ||
             fullName.value.trim() === ""
         ) {
 
@@ -350,10 +436,7 @@ enquiryForm.addEventListener(
         }
 
 
-
-        /* ---------------------------
-           PHONE
-        --------------------------- */
+        /* PHONE */
 
         clearError(
             phone,
@@ -362,13 +445,12 @@ enquiryForm.addEventListener(
 
 
         const phoneNumber =
-            phone.value
-                .replace(/\D/g, "");
+            phone
+                ? phone.value.replace(/\D/g, "")
+                : "";
 
 
-        if (
-            phoneNumber === ""
-        ) {
+        if (phoneNumber === "") {
 
             showError(
                 phone,
@@ -379,10 +461,10 @@ enquiryForm.addEventListener(
             formValid = false;
 
         }
-
         else if (
-            !/^[6-9][0-9]{9}$/
-                .test(phoneNumber)
+            !/^[6-9][0-9]{9}$/.test(
+                phoneNumber
+            )
         ) {
 
             showError(
@@ -396,10 +478,7 @@ enquiryForm.addEventListener(
         }
 
 
-
-        /* ---------------------------
-           EMAIL
-        --------------------------- */
+        /* EMAIL */
 
         clearError(
             email,
@@ -412,6 +491,7 @@ enquiryForm.addEventListener(
 
 
         if (
+            !email ||
             email.value.trim() === ""
         ) {
 
@@ -424,7 +504,6 @@ enquiryForm.addEventListener(
             formValid = false;
 
         }
-
         else if (
             !emailPattern.test(
                 email.value.trim()
@@ -442,10 +521,7 @@ enquiryForm.addEventListener(
         }
 
 
-
-        /* ---------------------------
-           ENQUIRY TYPE
-        --------------------------- */
+        /* ENQUIRY TYPE */
 
         clearError(
             enquiryType,
@@ -454,6 +530,7 @@ enquiryForm.addEventListener(
 
 
         if (
+            !enquiryType ||
             enquiryType.value === ""
         ) {
 
@@ -468,10 +545,7 @@ enquiryForm.addEventListener(
         }
 
 
-
-        /* ---------------------------
-           MESSAGE
-        --------------------------- */
+        /* MESSAGE */
 
         clearError(
             message,
@@ -480,6 +554,7 @@ enquiryForm.addEventListener(
 
 
         if (
+            !message ||
             message.value.trim() === ""
         ) {
 
@@ -492,7 +567,6 @@ enquiryForm.addEventListener(
             formValid = false;
 
         }
-
         else if (
             message.value.trim().length < 10
         ) {
@@ -508,187 +582,521 @@ enquiryForm.addEventListener(
         }
 
 
+        return formValid;
 
-        /* =================================================
-           SUCCESS
-        ================================================= */
+    }
 
-        if (formValid) {
 
-            formSuccess.classList.add(
-                "show"
+    if (enquiryForm) {
+
+        const submitButton =
+            enquiryForm.querySelector(
+                ".submit-button"
             );
 
+        const originalButtonContent =
+            submitButton
+                ? submitButton.innerHTML
+                : "";
 
-            enquiryForm.reset();
+
+        enquiryForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
 
 
-            setTimeout(
+                const formValid =
+                    validateEnquiryForm();
+
+
+                if (!formValid) {
+                    return;
+                }
+
+
+                const phoneNumber =
+                    phone.value.replace(
+                        /\D/g,
+                        ""
+                    );
+
+
+                const enquiryData = {
+
+                    full_name:
+                        fullName.value.trim(),
+
+                    phone:
+                        phoneNumber,
+
+                    email:
+                        email.value
+                            .trim()
+                            .toLowerCase(),
+
+                    company:
+                        company
+                            ? company.value.trim()
+                            : "",
+
+                    enquiry_type:
+                        enquiryType.value,
+
+                    message:
+                        message.value.trim()
+
+                };
+
+
+                if (submitButton) {
+
+                    submitButton.disabled = true;
+
+                    submitButton.innerHTML =
+                        "Sending...";
+
+                    submitButton.style.opacity =
+                        "0.7";
+
+                    submitButton.style.cursor =
+                        "not-allowed";
+
+                }
+
+
+                hideFormMessage();
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            API_BASE_URL +
+                            "/api/enquiries",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        enquiryData
+                                    )
+                            }
+                        );
+
+
+                    let result = {};
+
+
+                    try {
+
+                        result =
+                            await response.json();
+
+                    }
+                    catch (error) {
+
+                        result = {};
+
+                    }
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result.message ||
+                            "Unable to submit enquiry."
+                        );
+
+                    }
+
+
+                    showFormMessage(
+                        result.message ||
+                        "Thank you. Your enquiry has been submitted successfully.",
+                        "success"
+                    );
+
+
+                    enquiryForm.reset();
+
+
+                    clearError(
+                        fullName,
+                        nameError
+                    );
+
+                    clearError(
+                        phone,
+                        phoneError
+                    );
+
+                    clearError(
+                        email,
+                        emailError
+                    );
+
+                    clearError(
+                        enquiryType,
+                        typeError
+                    );
+
+                    clearError(
+                        message,
+                        messageError
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            hideFormMessage();
+
+                        },
+                        7000
+                    );
+
+                }
+                catch (error) {
+
+                    console.error(
+                        "Enquiry submission error:",
+                        error
+                    );
+
+
+                    showFormMessage(
+                        error.message ||
+                        "Unable to submit your enquiry. Please try again.",
+                        "error"
+                    );
+
+                }
+                finally {
+
+                    if (submitButton) {
+
+                        submitButton.disabled =
+                            false;
+
+                        submitButton.innerHTML =
+                            originalButtonContent;
+
+                        submitButton.style.opacity =
+                            "";
+
+                        submitButton.style.cursor =
+                            "";
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* Clear field error while typing */
+
+        if (fullName) {
+
+            fullName.addEventListener(
+                "input",
                 function () {
 
-                    formSuccess
-                        .classList
-                        .remove("show");
+                    clearError(
+                        fullName,
+                        nameError
+                    );
 
-                },
-                6000
+                }
+            );
+
+        }
+
+
+        if (phone) {
+
+            phone.addEventListener(
+                "input",
+                function () {
+
+                    clearError(
+                        phone,
+                        phoneError
+                    );
+
+                }
+            );
+
+        }
+
+
+        if (email) {
+
+            email.addEventListener(
+                "input",
+                function () {
+
+                    clearError(
+                        email,
+                        emailError
+                    );
+
+                }
+            );
+
+        }
+
+
+        if (enquiryType) {
+
+            enquiryType.addEventListener(
+                "change",
+                function () {
+
+                    clearError(
+                        enquiryType,
+                        typeError
+                    );
+
+                }
+            );
+
+        }
+
+
+        if (message) {
+
+            message.addEventListener(
+                "input",
+                function () {
+
+                    clearError(
+                        message,
+                        messageError
+                    );
+
+                }
             );
 
         }
 
     }
-);
-
-/* =====================================================
-   SCROLL REVEAL
-===================================================== */
-
-const revealElements = document.querySelectorAll(
-    ".about-container, " +
-    ".about-highlight-inner, " +
-    ".business-heading, " +
-    ".business-media, " +
-    ".business-services, " +
-    ".statement-container, " +
-    ".why-container, " +
-    ".products-top, " +
-    ".product-grid, " +
-    ".contact-container"
-);
 
 
-revealElements.forEach(function (element) {
-    element.classList.add("reveal");
-});
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+
+    const revealElements =
+        document.querySelectorAll(
+            ".about-container, " +
+            ".about-highlight-inner, " +
+            ".business-heading, " +
+            ".business-media, " +
+            ".business-services, " +
+            ".statement-container, " +
+            ".why-container, " +
+            ".products-top, " +
+            ".product-grid, " +
+            ".contact-container"
+        );
 
 
-const revealObserver =
-    new IntersectionObserver(
-        function (entries) {
+    revealElements.forEach(
+        function (element) {
 
-            entries.forEach(function (entry) {
+            element.classList.add("reveal");
 
-                if (entry.isIntersecting) {
+        }
+    );
 
-                    entry.target.classList.add(
-                        "visible"
+
+    if ("IntersectionObserver" in window) {
+
+        const revealObserver =
+            new IntersectionObserver(
+
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target
+                                    .classList
+                                    .add("visible");
+
+
+                                revealObserver
+                                    .unobserve(
+                                        entry.target
+                                    );
+
+                            }
+
+                        }
                     );
 
-                    revealObserver.unobserve(
-                        entry.target
-                    );
+                },
 
+                {
+                    threshold: 0.12
                 }
 
-            });
-
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-
-revealElements.forEach(function (element) {
-
-    revealObserver.observe(element);
-
-});
-
-
-
-/* =====================================================
-   ACTIVE NAVIGATION ON SCROLL
-===================================================== */
-
-const sections =
-    document.querySelectorAll(
-        "section[id]"
-    );
-
-
-const navigationLinks =
-    document.querySelectorAll(
-        ".main-nav a"
-    );
-
-
-function updateActiveNavigation() {
-
-    let currentSection = "home";
-
-
-    sections.forEach(function (section) {
-
-        const sectionTop =
-            section.offsetTop - 160;
-
-
-        if (
-            window.scrollY >= sectionTop
-        ) {
-
-            currentSection =
-                section.getAttribute("id");
-
-        }
-
-    });
-
-
-    navigationLinks.forEach(
-        function (link) {
-
-            link.classList.remove(
-                "active"
             );
 
 
-            const linkTarget =
-                link
-                    .getAttribute("href")
-                    .replace("#", "");
+        revealElements.forEach(
+            function (element) {
 
-
-            if (
-                linkTarget === currentSection
-            ) {
-
-                link.classList.add(
-                    "active"
+                revealObserver.observe(
+                    element
                 );
 
             }
+        );
 
+    }
+    else {
+
+        revealElements.forEach(
+            function (element) {
+
+                element.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
+
+    const sections =
+        document.querySelectorAll(
+            "section[id]"
+        );
+
+    const navigationLinks =
+        document.querySelectorAll(
+            ".main-nav a"
+        );
+
+
+    function updateActiveNavigation() {
+
+        let currentSection =
+            "home";
+
+
+        sections.forEach(
+            function (section) {
+
+                const sectionTop =
+                    section.offsetTop - 160;
+
+
+                if (
+                    window.scrollY >=
+                    sectionTop
+                ) {
+
+                    currentSection =
+                        section.getAttribute(
+                            "id"
+                        );
+
+                }
+
+            }
+        );
+
+
+        navigationLinks.forEach(
+            function (link) {
+
+                link.classList.remove(
+                    "active"
+                );
+
+
+                const href =
+                    link.getAttribute(
+                        "href"
+                    );
+
+
+                if (
+                    href &&
+                    href.startsWith("#")
+                ) {
+
+                    const linkTarget =
+                        href.substring(1);
+
+
+                    if (
+                        linkTarget ===
+                        currentSection
+                    ) {
+
+                        link.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateActiveNavigation,
+        {
+            passive: true
         }
     );
 
-}
+
+    updateActiveNavigation();
 
 
-window.addEventListener(
-    "scroll",
-    updateActiveNavigation
-);
+    /* =====================================================
+       HEADER SHADOW
+    ===================================================== */
+
+    const siteHeader =
+        document.querySelector(
+            ".site-header"
+        );
 
 
-updateActiveNavigation();
+    function updateHeaderShadow() {
 
+        if (!siteHeader) {
+            return;
+        }
 
-
-/* =====================================================
-   HEADER SHADOW ON SCROLL
-===================================================== */
-
-const siteHeader =
-    document.querySelector(
-        ".site-header"
-    );
-
-
-window.addEventListener(
-    "scroll",
-    function () {
 
         if (window.scrollY > 20) {
 
@@ -697,7 +1105,6 @@ window.addEventListener(
             );
 
         }
-
         else {
 
             siteHeader.classList.remove(
@@ -707,519 +1114,507 @@ window.addEventListener(
         }
 
     }
-);
 
 
-/* =====================================================
-   SNAPSHOT COUNTER
-===================================================== */
-
-const counters =
-    document.querySelectorAll(".counter");
-
-
-let counterStarted = false;
+    window.addEventListener(
+        "scroll",
+        updateHeaderShadow,
+        {
+            passive: true
+        }
+    );
 
 
-const snapshotSection =
-    document.querySelector(".snapshot-section");
+    updateHeaderShadow();
 
 
-const snapshotObserver =
-    new IntersectionObserver(
+    /* =====================================================
+       SNAPSHOT COUNTERS
+    ===================================================== */
 
-        function (entries) {
+    const counters =
+        document.querySelectorAll(
+            ".counter"
+        );
 
-            entries.forEach(
-                function (entry) {
+    const snapshotSection =
+        document.querySelector(
+            ".snapshot-section"
+        );
+
+    let counterStarted =
+        false;
+
+
+    function startCounters() {
+
+        counters.forEach(
+            function (counter) {
+
+                const target =
+                    Number(
+                        counter.getAttribute(
+                            "data-target"
+                        )
+                    );
+
+
+                if (
+                    Number.isNaN(target)
+                ) {
+                    return;
+                }
+
+
+                let current =
+                    0;
+
+
+                const increment =
+                    Math.max(
+                        1,
+                        Math.ceil(
+                            target / 60
+                        )
+                    );
+
+
+                const timer =
+                    setInterval(
+                        function () {
+
+                            current +=
+                                increment;
+
+
+                            if (
+                                current >=
+                                target
+                            ) {
+
+                                current =
+                                    target;
+
+                                clearInterval(
+                                    timer
+                                );
+
+                            }
+
+
+                            counter.textContent =
+                                current + "+";
+
+                        },
+                        25
+                    );
+
+            }
+        );
+
+    }
+
+
+    if (
+        snapshotSection &&
+        "IntersectionObserver" in window
+    ) {
+
+        const snapshotObserver =
+            new IntersectionObserver(
+
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (
+                                entry.isIntersecting &&
+                                !counterStarted
+                            ) {
+
+                                counterStarted =
+                                    true;
+
+                                startCounters();
+
+                                snapshotObserver
+                                    .disconnect();
+
+                            }
+
+                        }
+                    );
+
+                },
+
+                {
+                    threshold: 0.35
+                }
+
+            );
+
+
+        snapshotObserver.observe(
+            snapshotSection
+        );
+
+    }
+    else if (
+        snapshotSection &&
+        !counterStarted
+    ) {
+
+        counterStarted = true;
+
+        startCounters();
+
+    }
+
+
+    /* =====================================================
+       MEGA MENU
+    ===================================================== */
+
+    const megaTriggers =
+        document.querySelectorAll(
+            ".mega-trigger"
+        );
+
+    const megaMenus =
+        document.querySelectorAll(
+            ".mega-menu"
+        );
+
+    const megaBackdrop =
+        document.getElementById(
+            "megaBackdrop"
+        );
+
+    const megaHeader =
+        document.getElementById(
+            "siteHeader"
+        );
+
+
+    let activeMegaMenu =
+        null;
+
+    let blockMegaHover =
+        false;
+
+
+    function pauseMegaVideos() {
+
+        const videos =
+            document.querySelectorAll(
+                ".mega-menu video"
+            );
+
+
+        videos.forEach(
+            function (video) {
+
+                video.pause();
+
+            }
+        );
+
+    }
+
+
+    function playMegaVideo(menu) {
+
+        pauseMegaVideos();
+
+
+        if (!menu) {
+            return;
+        }
+
+
+        const video =
+            menu.querySelector(
+                "video"
+            );
+
+
+        if (!video) {
+            return;
+        }
+
+
+        const playPromise =
+            video.play();
+
+
+        if (
+            playPromise !== undefined
+        ) {
+
+            playPromise.catch(
+                function () {
+
+                    /* Browser may block autoplay */
+
+                }
+            );
+
+        }
+
+    }
+
+
+    function openMegaMenu(trigger) {
+
+        if (
+            blockMegaHover ||
+            !trigger
+        ) {
+            return;
+        }
+
+
+        const menuId =
+            trigger.getAttribute(
+                "data-menu"
+            );
+
+
+        const selectedMenu =
+            document.getElementById(
+                menuId
+            );
+
+
+        if (!selectedMenu) {
+            return;
+        }
+
+
+        megaMenus.forEach(
+            function (menu) {
+
+                menu.classList.remove(
+                    "open"
+                );
+
+            }
+        );
+
+
+        megaTriggers.forEach(
+            function (button) {
+
+                button.classList.remove(
+                    "menu-active"
+                );
+
+            }
+        );
+
+
+        selectedMenu.classList.add(
+            "open"
+        );
+
+
+        trigger.classList.add(
+            "menu-active"
+        );
+
+
+        if (megaBackdrop) {
+
+            megaBackdrop.classList.add(
+                "show"
+            );
+
+        }
+
+
+        activeMegaMenu =
+            selectedMenu;
+
+
+        playMegaVideo(
+            selectedMenu
+        );
+
+    }
+
+
+    function closeMegaMenu() {
+
+        megaMenus.forEach(
+            function (menu) {
+
+                menu.classList.remove(
+                    "open"
+                );
+
+            }
+        );
+
+
+        megaTriggers.forEach(
+            function (button) {
+
+                button.classList.remove(
+                    "menu-active"
+                );
+
+            }
+        );
+
+
+        if (megaBackdrop) {
+
+            megaBackdrop.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        pauseMegaVideos();
+
+
+        activeMegaMenu =
+            null;
+
+    }
+
+
+    megaTriggers.forEach(
+        function (trigger) {
+
+            trigger.addEventListener(
+                "mouseenter",
+                function () {
 
                     if (
-                        entry.isIntersecting &&
-                        !counterStarted
+                        window.innerWidth > 850 &&
+                        !blockMegaHover
                     ) {
 
-                        counterStarted = true;
-
-                        startCounters();
+                        openMegaMenu(
+                            trigger
+                        );
 
                     }
 
                 }
             );
 
-        },
 
-        {
-            threshold: 0.35
-        }
+            trigger.addEventListener(
+                "click",
+                function (event) {
 
-    );
-
-
-if (snapshotSection) {
-
-    snapshotObserver.observe(
-        snapshotSection
-    );
-
-}
+                    event.preventDefault();
 
 
-
-function startCounters() {
-
-    counters.forEach(
-        function (counter) {
-
-            const target =
-                Number(
-                    counter.getAttribute(
-                        "data-target"
-                    )
-                );
+                    const menuId =
+                        trigger.getAttribute(
+                            "data-menu"
+                        );
 
 
-            let current = 0;
-
-
-            const increment =
-                Math.max(
-                    1,
-                    Math.ceil(target / 60)
-                );
-
-
-            const timer =
-                setInterval(
-                    function () {
-
-                        current += increment;
-
+                    if (
+                        window.innerWidth <= 850
+                    ) {
 
                         if (
-                            current >= target
+                            menuId ===
+                            "aboutMega"
                         ) {
 
-                            current = target;
+                            window.location.hash =
+                                "about";
 
-                            clearInterval(timer);
+                        }
+                        else if (
+                            menuId ===
+                            "businessMega"
+                        ) {
+
+                            window.location.hash =
+                                "business";
+
+                        }
+                        else if (
+                            menuId ===
+                            "productsMega"
+                        ) {
+
+                            window.location.hash =
+                                "products";
 
                         }
 
 
-                        counter.textContent =
-                            current + "+";
+                        if (mainNav) {
 
-                    },
+                            mainNav.classList.remove(
+                                "open"
+                            );
 
-                    25
-                );
+                        }
 
-        }
-    );
 
-}
+                        return;
 
-/* =====================================================
-   JESPER MEGA MENU
-===================================================== */
+                    }
 
-const megaTriggers =
-    document.querySelectorAll(
-        ".mega-trigger"
-    );
 
-
-const megaMenus =
-    document.querySelectorAll(
-        ".mega-menu"
-    );
-
-
-const megaBackdrop =
-    document.getElementById(
-        "megaBackdrop"
-    );
-
-
-let activeMegaMenu = null;
-
-
-
-/* =====================================================
-   OPEN MENU
-===================================================== */
-
-function openMegaMenu(trigger) {
-
-    const menuId =
-        trigger.getAttribute(
-            "data-menu"
-        );
-
-
-    const selectedMenu =
-        document.getElementById(
-            menuId
-        );
-
-
-    /*
-        Close previously open menu
-    */
-
-    megaMenus.forEach(
-        function (menu) {
-
-            menu.classList.remove(
-                "open"
-            );
-
-        }
-    );
-
-
-    megaTriggers.forEach(
-        function (button) {
-
-            button.classList.remove(
-                "menu-active"
-            );
-
-        }
-    );
-
-
-    /*
-        Open requested menu
-    */
-
-    selectedMenu.classList.add(
-        "open"
-    );
-
-
-    trigger.classList.add(
-        "menu-active"
-    );
-
-
-    megaBackdrop.classList.add(
-        "show"
-    );
-
-
-    activeMegaMenu =
-        selectedMenu;
-
-
-    /*
-        Start video if browser paused it
-    */
-
-    const video =
-        selectedMenu.querySelector(
-            "video"
-        );
-
-
-    if (video) {
-
-        video.play().catch(
-            function () {
-                /* autoplay may be blocked */
-            }
-        );
-
-    }
-
-}
-
-
-
-/* =====================================================
-   CLOSE MENU
-===================================================== */
-
-function closeMegaMenu() {
-
-    megaMenus.forEach(
-        function (menu) {
-
-            menu.classList.remove(
-                "open"
-            );
-
-        }
-    );
-
-
-    megaTriggers.forEach(
-        function (button) {
-
-            button.classList.remove(
-                "menu-active"
-            );
-
-        }
-    );
-
-
-    megaBackdrop.classList.remove(
-        "show"
-    );
-
-
-    activeMegaMenu = null;
-
-}
-
-
-
-/* =====================================================
-   DESKTOP HOVER
-===================================================== */
-
-megaTriggers.forEach(
-    function (trigger) {
-
-
-        /*
-            Hover opens menu
-        */
-
-        trigger.addEventListener(
-            "mouseenter",
-            function () {
-
-                if (
-                    window.innerWidth > 850
-                ) {
-
-                    openMegaMenu(
-                        trigger
-                    );
-
-                }
-
-            }
-        );
-
-
-        /*
-            Click also works
-        */
-
-        trigger.addEventListener(
-            "click",
-            function () {
-
-                if (
-                    window.innerWidth <= 850
-                ) {
-
-                    /*
-                       On mobile, go to section
-                    */
-
-                    const target =
-                        trigger.textContent
-                            .trim()
-                            .toLowerCase();
+                    const selectedMenu =
+                        document.getElementById(
+                            menuId
+                        );
 
 
                     if (
-                        target.includes(
-                            "about"
-                        )
-                    ) {
-
-                        location.hash =
-                            "about";
-
-                    }
-
-
-                    else if (
-                        target.includes(
-                            "business"
-                        )
-                    ) {
-
-                        location.hash =
-                            "business";
-
-                    }
-
-
-                    else if (
-                        target.includes(
-                            "products"
-                        )
-                    ) {
-
-                        location.hash =
-                            "products";
-
-                    }
-
-
-                    mainNav.classList.remove(
-                        "open"
-                    );
-
-                    return;
-
-                }
-
-
-                const menuId =
-                    trigger.getAttribute(
-                        "data-menu"
-                    );
-
-
-                const selectedMenu =
-                    document.getElementById(
-                        menuId
-                    );
-
-
-                if (
-                    selectedMenu.classList
-                        .contains("open")
-                ) {
-
-                    closeMegaMenu();
-
-                }
-
-                else {
-
-                    openMegaMenu(
-                        trigger
-                    );
-
-                }
-
-            }
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   KEEP OPEN WHILE CURSOR IS INSIDE MENU
-===================================================== */
-
-megaMenus.forEach(
-    function (menu) {
-
-        menu.addEventListener(
-            "mouseenter",
-            function () {
-
-                activeMegaMenu = menu;
-
-            }
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   CLOSE WHEN LEAVING HEADER AREA
-===================================================== */
-
-const siteHeaderMega =
-    document.getElementById(
-        "siteHeader"
-    );
-
-
-siteHeaderMega.addEventListener(
-    "mouseleave",
-    function () {
-
-        if (
-            window.innerWidth > 850
-        ) {
-
-            setTimeout(
-                function () {
-
-                    if (
-                        !siteHeaderMega.matches(
-                            ":hover"
-                        )
+                        selectedMenu &&
+                        selectedMenu
+                            .classList
+                            .contains("open")
                     ) {
 
                         closeMegaMenu();
 
                     }
+                    else {
 
-                },
-                100
+                        openMegaMenu(
+                            trigger
+                        );
+
+                    }
+
+                }
             );
 
         }
-
-    }
-);
+    );
 
 
-
-/* =====================================================
-   CLICK BACKDROP
-===================================================== */
-
-megaBackdrop.addEventListener(
-    "click",
-    closeMegaMenu
-);
+    const megaLinks =
+        document.querySelectorAll(
+            ".mega-menu a"
+        );
 
 
-
-/* =====================================================
-   ESC KEY
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            closeMegaMenu();
-
-        }
-
-    }
-);
-
-
-
-/* =====================================================
-   LINKS INSIDE MEGA MENU
-===================================================== */
-
-document
-    .querySelectorAll(
-        ".mega-menu a"
-    )
-    .forEach(
+    megaLinks.forEach(
         function (link) {
 
             link.addEventListener(
                 "click",
                 function () {
 
+                    blockMegaHover =
+                        true;
+
                     closeMegaMenu();
 
                 }
@@ -1228,19 +1623,164 @@ document
         }
     );
 
+
+    if (megaHeader) {
+
+        megaHeader.addEventListener(
+            "mouseleave",
+            function () {
+
+                closeMegaMenu();
+
+                blockMegaHover =
+                    false;
+
+            }
+        );
+
+    }
+
+
+    if (megaBackdrop) {
+
+        megaBackdrop.addEventListener(
+            "click",
+            function () {
+
+                closeMegaMenu();
+
+                blockMegaHover =
+                    true;
+
+            }
+        );
+
+    }
+
+
+    const mainElement =
+        document.querySelector(
+            "main"
+        );
+
+
+    if (mainElement) {
+
+        mainElement.addEventListener(
+            "mouseenter",
+            function () {
+
+                blockMegaHover =
+                    false;
+
+            }
+        );
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        function () {
+
+            if (activeMegaMenu) {
+
+                closeMegaMenu();
+
+                blockMegaHover =
+                    true;
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
     /* =====================================================
-   CLOSE MEGA MENU WHEN PAGE SCROLLS
-===================================================== */
+       ESCAPE KEY
+    ===================================================== */
 
-window.addEventListener(
-    "scroll",
-    function () {
+    document.addEventListener(
+        "keydown",
+        function (event) {
 
-        if (activeMegaMenu) {
+            if (
+                event.key !== "Escape"
+            ) {
+                return;
+            }
+
+
+            closeProductModal();
 
             closeMegaMenu();
 
-        }
+            blockMegaHover =
+                true;
 
-    }
-);
+        }
+    );
+
+
+    /* =====================================================
+       PRODUCT CATEGORY FROM MEGA MENU
+
+       Required because index.html uses:
+       onclick="selectProductCategory(...)"
+    ===================================================== */
+
+    window.selectProductCategory =
+        function (category) {
+
+            closeMegaMenu();
+
+
+            const productsSection =
+                document.getElementById(
+                    "products"
+                );
+
+
+            if (productsSection) {
+
+                productsSection.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
+
+
+            const filterButton =
+                document.querySelector(
+                    '.filter-btn[data-filter="' +
+                    category +
+                    '"]'
+                );
+
+
+            if (filterButton) {
+
+                setTimeout(
+                    function () {
+
+                        filterButton.click();
+
+                    },
+                    300
+                );
+
+            }
+            else {
+
+                filterProducts(
+                    category
+                );
+
+            }
+
+        };
+
+});
