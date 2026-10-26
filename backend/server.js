@@ -321,10 +321,13 @@ app.get("/api/health", async function (req, res) {
    CREATE ENQUIRY
 ========================================================= */
 
+
+/* =========================================================
+   CREATE ENQUIRY
+========================================================= */
+
 app.post("/api/enquiries", async function (req, res) {
-
     try {
-
         let {
             full_name,
             phone,
@@ -333,7 +336,6 @@ app.post("/api/enquiries", async function (req, res) {
             enquiry_type,
             message
         } = req.body;
-
 
         full_name =
             typeof full_name === "string"
@@ -365,43 +367,33 @@ app.post("/api/enquiries", async function (req, res) {
                 ? message.trim()
                 : "";
 
-
+        // Validate customer name
         if (!full_name) {
-
             return res.status(400).json({
                 success: false,
                 message: "Full name is required."
             });
-
         }
 
-
+        // Validate Indian mobile number
         if (!/^[6-9][0-9]{9}$/.test(phone)) {
-
             return res.status(400).json({
                 success: false,
-                message:
-                    "Enter a valid 10-digit mobile number."
+                message: "Enter a valid 10-digit mobile number."
             });
-
         }
 
-
-        const emailPattern =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+        // Validate email address
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(email)) {
-
             return res.status(400).json({
                 success: false,
-                message:
-                    "Enter a valid email address."
+                message: "Enter a valid email address."
             });
-
         }
 
-
+        // Validate enquiry type
         const allowedTypes = [
             "product",
             "distribution",
@@ -409,37 +401,24 @@ app.post("/api/enquiries", async function (req, res) {
             "general"
         ];
 
-
-        if (
-            !allowedTypes.includes(
-                enquiry_type
-            )
-        ) {
-
+        if (!allowedTypes.includes(enquiry_type)) {
             return res.status(400).json({
                 success: false,
-                message:
-                    "Select a valid enquiry type."
+                message: "Select a valid enquiry type."
             });
-
         }
 
-
+        // Validate message
         if (message.length < 10) {
-
             return res.status(400).json({
                 success: false,
-                message:
-                    "Please provide more information."
+                message: "Please provide more information."
             });
-
         }
 
-
-        const [result] =
-            await pool.execute(
-                `
-                INSERT INTO enquiries
+        // Save the enquiry to MySQL first
+        const [result] = await pool.execute(
+            `INSERT INTO enquiries
                 (
                     full_name,
                     phone,
@@ -448,22 +427,18 @@ app.post("/api/enquiries", async function (req, res) {
                     enquiry_type,
                     message
                 )
-                VALUES (?, ?, ?, ?, ?, ?)
-                `,
-                [
-                    full_name,
-                    phone,
-                    email,
-                    company || null,
-                    enquiry_type,
-                    message
-                ]
-            );
+             VALUES (?, ?, ?, ?, ?, ?)`,
+            [
+                full_name,
+                phone,
+                email,
+                company || null,
+                enquiry_type,
+                message
+            ]
+        );
 
-
-        const enquiryId =
-            result.insertId;
-
+        const enquiryId = result.insertId;
 
         const enquiry = {
             full_name,
@@ -474,75 +449,40 @@ app.post("/api/enquiries", async function (req, res) {
             message
         };
 
-
-        /*
-            Enquiry DB save should remain successful
-            even if an email temporarily fails.
-        */
-
-        const mailResults =
-            await Promise.allSettled([
-
-                sendCustomerAcknowledgement(
-                    enquiry
-                ),
-
-                sendAdminNotification(
-                    enquiry,
-                    enquiryId
-                )
-
-            ]);
-
-
-        mailResults.forEach(
-            function (result, index) {
-
-                if (
-                    result.status ===
-                    "rejected"
-                ) {
-
+        // Send emails in the background.
+        // Email timeouts must not delay the API response.
+        Promise.allSettled([
+            sendCustomerAcknowledgement(enquiry),
+            sendAdminNotification(enquiry, enquiryId)
+        ]).then(function (mailResults) {
+            mailResults.forEach(function (mailResult, index) {
+                if (mailResult.status === "rejected") {
                     console.error(
                         index === 0
                             ? "Customer acknowledgement failed:"
                             : "Admin notification failed:",
-                        result.reason
+                        mailResult.reason
                     );
-
                 }
+            });
+        });
 
-            }
-        );
-
-
-        res.status(201).json({
+        // Respond only after the database insert succeeds
+        return res.status(201).json({
             success: true,
-
             message:
                 "Thank you. Your enquiry has been submitted successfully.",
-
-            enquiry_id:
-                enquiryId
+            enquiry_id: enquiryId
         });
 
-    }
-    catch (error) {
+    } catch (error) {
+        console.error("Create enquiry error:", error);
 
-        console.error(
-            "Create enquiry error:",
-            error
-        );
-
-
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
-            message:
-                "Unable to submit your enquiry right now."
+            message: "Unable to submit your enquiry right now."
         });
-
     }
-
 });
 
 
